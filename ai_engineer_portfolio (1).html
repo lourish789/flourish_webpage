@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flourish Olaiya - AI Engineer & Data Scientist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .skill-tag {
+            transition: all 0.3s ease;
+        }
+        
+        .skill-tag:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .typing-animation {
+            border-right: 2px solid #667eea;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { border-color: transparent; }
+            51%, 100% { border-color: #667eea; }
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .nav-link {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: left 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            left: 0;
+        }
+        
+        .project-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold gradient-text">Flourish Olaiya</h1>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-purple-600 font-medium transition-colors">Home</a>
+                    <a href="#about" class="nav-link text-gray-700 hover:text-purple-600 font-medium transition-colors">About</a>
+                    <a href="#skills" class="nav-link text-gray-700 hover:text-purple-600 font-medium transition-colors">Skills</a>
+                    <a href="#projects" class="nav-link text-gray-700 hover:text-purple-600 font-medium transition-colors">Projects</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-purple-600 font-medium transition-colors">Contact</a>
+                </div>
+                <button class="md:hidden">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center gradient-bg relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-10"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center text-white">
+                <div class="floating">
+                    <div class="w-48 h-48 mx-auto mb-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center">
+                        <i class="fas fa-brain text-6xl text-white"></i>
+                    </div>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                    Hi, I'm <span class="typing-animation">Flourish</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed">
+                    Engineering Undergrad, AI Engineer and Data Scientist with 4 years experience in building intelligent solutions
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#projects" class="bg-white text-purple-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all transform hover:scale-105">
+                        View My Work
+                    </a>
+                    <a href="#contact" class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-purple-600 transition-all">
+                        Get In Touch
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Animated background elements -->
+        <div class="absolute top-20 left-10 w-20 h-20 bg-white/10 rounded-full animate-pulse"></div>
+        <div class="absolute bottom-20 right-10 w-32 h-32 bg-white/10 rounded-full animate-bounce"></div>
+        <div class="absolute top-1/2 left-20 w-16 h-16 bg-white/10 rounded-full floating"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4">About Me</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-purple-600 to-blue-500 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="bg-gradient-to-br from-purple-100 to-blue-100 p-8 rounded-2xl">
+                        <div class="w-full h-64 bg-gradient-to-br from-purple-200 to-blue-200 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-user-tie text-6xl text-purple-600"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-3xl font-bold mb-6 text-gray-800">Passionate AI Engineer & Data Scientist</h3>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        With 4 years of hands-on experience in artificial intelligence and data science, I specialize in developing cutting-edge machine learning solutions that solve real-world problems. My journey began as an engineering undergraduate, and I've since evolved into a versatile AI practitioner.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        I'm passionate about leveraging advanced technologies like computer vision, natural language processing, and deep learning to create impactful solutions in healthcare, agriculture, and mental health domains.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="text-center p-4 bg-gray-50 rounded-xl">
+                            <div class="text-3xl font-bold gradient-text">4+</div>
+                            <div class="text-gray-600">Years Experience</div>
+                        </div>
+                        <div class="text-center p-4 bg-gray-50 rounded-xl">
+                            <div class="text-3xl font-bold gradient-text">50+</div>
+                            <div class="text-gray-600">Projects Completed</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4">Technical Skills</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-purple-600 to-blue-500 mx-auto mb-6"></div>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    A comprehensive toolkit for building intelligent solutions across various domains
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div class="card-hover bg-white p-6 rounded-2xl shadow-lg text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fab fa-python text-2xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Programming</h3>
+                    <p class="text-gray-600">Python, Data Structures</p>
+                </div>
+                
+                <div class="card-hover bg-white p-6 rounded-2xl shadow-lg text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-chart-bar text-2xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Analytics</h3>
+                    <p class="text-gray-600">Excel, Power BI, Data Visualization</p>
+                </div>
+                
+                <div class="card-hover bg-white p-6 rounded-2xl shadow-lg text-center">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-brain text-2xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Machine Learning</h3>
+                    <p class="text-gray-600">Predictive Modeling, Sci-kit Learn</p>
+                </div>
+                
+                <div class="card-hover bg-white p-6 rounded-2xl shadow-lg text-center">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-eye text-2xl text-red-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Deep Learning</h3>
+                    <p class="text-gray-600">TensorFlow, Keras, OpenCV</p>
+                </div>
+            </div>
+            
+            <div class="bg-white p-8 rounded-2xl shadow-lg">
+                <h3 class="text-2xl font-bold mb-6 text-center">Core Technologies</h3>
+                <div class="flex flex-wrap gap-3 justify-center">
+                    <span class="skill-tag px-4 py-2 bg-blue-100 text-blue-800 rounded-full font-medium">Python</span>
+                    <span class="skill-tag px-4 py-2 bg-green-100 text-green-800 rounded-full font-medium">Excel</span>
+                    <span class="skill-tag px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full font-medium">Power BI</span>
+                    <span class="skill-tag px-4 py-2 bg-purple-100 text-purple-800 rounded-full font-medium">Data Analytics</span>
+                    <span class="skill-tag px-4 py-2 bg-red-100 text-red-800 rounded-full font-medium">Data Visualization</span>
+                    <span class="skill-tag px-4 py-2 bg-indigo-100 text-indigo-800 rounded-full font-medium">Predictive Modeling</span>
+                    <span class="skill-tag px-4 py-2 bg-pink-100 text-pink-800 rounded-full font-medium">Computer Vision</span>
+                    <span class="skill-tag px-4 py-2 bg-teal-100 text-teal-800 rounded-full font-medium">NLP</span>
+                    <span class="skill-tag px-4 py-2 bg-orange-100 text-orange-800 rounded-full font-medium">Transformers</span>
+                    <span class="skill-tag px-4 py-2 bg-cyan-100 text-cyan-800 rounded-full font-medium">TensorFlow</span>
+                    <span class="skill-tag px-4 py-2 bg-gray-100 text-gray-800 rounded-full font-medium">OpenCV</span>
+                    <span class="skill-tag px-4 py-2 bg-blue-100 text-blue-800 rounded-full font-medium">Keras</span>
+                    <span class="skill-tag px-4 py-2 bg-green-100 text-green-800 rounded-full font-medium">Scikit-learn</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4">Featured Projects</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-purple-600 to-blue-500 mx-auto mb-6"></div>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Innovative AI solutions addressing real-world challenges in healthcare, agriculture, and beyond
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Cassava Disease Identifier -->
+                <div class="card-hover bg-gradient-to-br from-green-400 to-green-600 rounded-2xl overflow-hidden shadow-lg">
+                    <div class="project-card p-6 h-full">
+                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-leaf text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Cassava Disease Identifier</h3>
+                        <p class="text-green-100 mb-4">
+                            AI-powered computer vision system for early detection and classification of cassava plant diseases using deep learning.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-white/20 text-white text-xs rounded-full">Computer Vision</span>
+                            <span class="px-2 py-1 bg-white/20 text-white text-xs rounded-full">TensorFlow</span>
+                            <span class="px-2 py-1 bg-white/20 text-white text-xs rounded-full">CNN</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <button class="flex-1 bg-white text-green-600 py-2 rounded-lg font-medium hover:bg-gray-100 transition-colors">
+                                <i class="fas fa-code mr-2"></i>Code
+                            </button>
+                            <button class="flex-1 bg-white/20 text-white py-2 rounded-lg font-medium hover:bg-white/30 transition-colors">
+                                <i class="fas fa-external-link-alt mr-2"></i>Demo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lung Cancer Identifier -->
+                <div class="card-hover bg-gradient-to-br from-red-400 to-red-600 rounded-2xl overflow-hidden shadow-lg">
+                    <div class="project-card p-6 h-full">
+                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-lungs text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Lung Cancer Detector</h3>
+                        <p class="text-red-100 mb-4">
+                            Advanced medical imaging AI for detecting lung cancer from CT scans with high accuracy and early-stage identification.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-white/20 text-white text-xs rounded-full">Medical AI</span>
+                            <span class="px-2 py-1 bg-white/20 text-white text-xs rounded-full">OpenCV</span>
+                            <span class="px-2 py-1 bg-white/20 text-white text-xs rounded-full">Keras</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <button class="flex-1 bg-white text-red-600 py-2 rounded-lg font-medium hover:bg-gray-100 transition-colors">
+                                <i class="fas fa-code mr-2"></i>Code
+                            </button>
+                            <button class="flex-1 bg-white/20 text-white py-2 rounded-lg font-medium hover:bg-white/30 transition-colors">
+                                <i class="fas fa-external-link-alt mr-2"></i>Demo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Breast Cancer Identifier -->
+                <div class="card-hover bg-gradient-to-br from-pink-400 to-pink-600 rounded-2xl overflow-hidden shadow-lg">
+                    <div class="project-card p-6 h-full">
+                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-ribbon text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Breast Cancer Classifier</h3>
+                        <p class="text-pink-100 mb-4">
+                            Multi-modal AI system analyzing MRI, Ultrasound & Mammogram images for comprehensive breast cancer detection.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-white/20 text-white text-xs rounded-full">Multi-modal</span>
+                            <span class="px-2 py-1 bg-white/20 text-white text-xs rounded-full">Deep Learning</span>
+                            <span class="px-2 py-1 bg-white/20 text-white text-xs rounded-full">Healthcare</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <button class="flex-1 bg-white text-pink-600 py-2 rounded-lg font-medium hover:bg-gray-100 transition-colors">
+                                <i class="fas fa-code mr-2"></i>Code
+                            </button>
+                            <button class="flex-1 bg-white/20 text-white py-2 rounded-lg font-medium hover:bg-white/30 transition-colors">
+                                <i class="fas fa-external-link-alt mr-2"></i>Demo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mental Aid Model -->
+                <div class="card-hover bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl overflow-hidden shadow-lg">
+                    <div class="project-card p-6 h-full">
+                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-brain text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Mental Aid EEG Model</h3>
+                        <p class="text-blue-100 mb-4">
+                            Revolutionary AI model analyzing EEG brain signals for mental health assessment and personalized therapy recommendations.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-white/20 text-white text-xs rounded-full">EEG Analysis</span>
+                            <span class="px-2 py-1 bg-white/20 text-white text-xs rounded-full">Mental Health</span>
+                            <span class="px-2 py-1 bg-white/20 text-white text-xs rounded-full">Signal Processing</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <button class="flex-1 bg-white text-blue-600 py-2 rounded-lg font-medium hover:bg-gray-100 transition-colors">
+                                <i class="fas fa-code mr-2"></i>Code
+                            </button>
+                            <button class="flex-1 bg-white/20 text-white py-2 rounded-lg font-medium hover:bg-white/30 transition-colors">
+                                <i class="fas fa-external-link-alt mr-2"></i>Demo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Conversational AI -->
+                <div class="card-hover bg-gradient-to-br from-purple-400 to-purple-600 rounded-2xl overflow-hidden shadow-lg">
+                    <div class="project-card p-6 h-full">
+                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-comments text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Generative Conversational AI</h3>
+                        <p class="text-purple-100 mb-4">
+                            Advanced NLP model using transformers for intelligent conversation generation with context awareness and personality.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-white/20 text-white text-xs rounded-full">NLP</span>
+                            <span class="px-2 py-1 bg-white/20 text-white text-xs rounded-full">Transformers</span>
+                            <span class="px-2 py-1 bg-white/20 text-white text-xs rounded-full">GPT</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <button class="flex-1 bg-white text-purple-600 py-2 rounded-lg font-medium hover:bg-gray-100 transition-colors">
+                                <i class="fas fa-code mr-2"></i>Code
+                            </button>
+                            <button class="flex-1 bg-white/20 text-white py-2 rounded-lg font-medium hover:bg-white/30 transition-colors">
+                                <i class="fas fa-external-link-alt mr-2"></i>Demo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Project Placeholder -->
+                <div class="card-hover bg-gradient-to-br from-indigo-400 to-indigo-600 rounded-2xl overflow-hidden shadow-lg">
+                    <div class="project-card p-6 h-full">
+                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-chart-line text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Predictive Analytics Platform</h3>
+                        <p class="text-indigo-100 mb-4">
+                            Comprehensive data analytics platform with advanced predictive modeling capabilities for business intelligence.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-white/20 text-white text-xs rounded-full">Analytics</span>
+                            <span class="px-2 py-1 bg-white/20 text-white text-xs rounded-full">Power BI</span>
+                            <span class="px-2 py-1 bg-white/20 text-white text-xs rounded-full">Python</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <button class="flex-1 bg-white text-indigo-600 py-2 rounded-lg font-medium hover:bg-gray-100 transition-colors">
+                                <i class="fas fa-code mr-2"></i>Code
+                            </button>
+                            <button class="flex-1 bg-white/20 text-white py-2 rounded-lg font-medium hover:bg-white/30 transition-colors">
+                                <i class="fas fa-external-link-alt mr-2"></i>Demo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 gradient-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Let's Connect</h2>
+                <div class="w-24 h-1 bg-white mx-auto mb-6"></div>
+                <p class="text-xl text-white/90 max-w-3xl mx-auto">
+                    Ready to collaborate on your next AI project? Let's discuss how we can build something amazing together.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="space-y-8">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
+                                <i class="fas fa-envelope text-2xl text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-white">Email</h3>
+                                <a href="mailto:flourisholaiya@gmail.com" class="text-white/90 hover:text-white transition-colors">
+                                    flourisholaiya@gmail.com
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
+                                <i class="fab fa-linkedin text-2xl text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-white">LinkedIn</h3>
+                                <a href="https://linkedin.com/in/flourish-olaiya" target="_blank" class="text-white/90 hover:text-white transition-colors">
+                                    /flourish-olaiya
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
+                                <i class="fas fa-map-marker-alt text-2xl text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-white">Location</h3>
+                                <p class="text-white/90">Available for Remote & On-site Projects</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold text-white mb-6">Send a Message</h3>
+                    <form class="space-y-6">
+                        <div>
+                            <input type="text" placeholder="Your Name" class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50">
+                        </div>
+                        <div>
+                            <input type="email" placeholder="Your Email" class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50">
+                        </div>
+                        <div>
+                            <input type="text" placeholder="Subject" class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50">
+                        </div>
+                        <div>
+                            <textarea rows="5" placeholder="Your Message" class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-white text-purple-600 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors transform hover:scale-105">
+                            <i class="fas fa-paper-plane mr-2"></i>Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold gradient-text mb-4">Flourish Olaiya</h3>
+                    <p class="text-gray-400 mb-4">
+                        AI Engineer & Data Scientist passionate about creating intelligent solutions that make a difference.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="mailto:flourisholaiya@gmail.com" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition-colors">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/flourish-olaiya" target="_blank" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition-colors">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/flourish-olaiya" target="_blank" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition-colors">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">About</a></li>
+                        <li><a href="#skills" class="text-gray-400 hover:text-white transition-colors">Skills</a></li>
+                        <li><a href="#projects" class="text-gray-400 hover:text-white transition-colors">Projects</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Specializations</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>Machine Learning</li>
+                        <li>Computer Vision</li>
+                        <li>Natural Language Processing</li>
+                        <li>Data Analytics</li>
+                        <li>Predictive Modeling</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-gray-400">
+                    © 2025 Flourish Olaiya. All rights reserved. Built with passion for AI and innovation.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Typing animation for hero text
+        const typingText = document.querySelector('.typing-animation');
+        if (typingText) {
+            const text = 'Flourish';
+            let index = 0;
+            
+            function typeWriter() {
+                if (index < text.length) {
+                    typingText.textContent = text.substring(0, index + 1);
+                    index++;
+                    setTimeout(typeWriter, 150);
+                } else {
+                    setTimeout(() => {
+                        index = 0;
+                        typingText.textContent = '';
+                        typeWriter();
+                    }, 2000);
+                }
+            }
+            
+            typeWriter();
+        }
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const name = this.querySelector('input[placeholder="Your Name"]').value;
+            const email = this.querySelector('input[placeholder="Your Email"]').value;
+            const subject = this.querySelector('input[placeholder="Subject"]').value;
+            const message = this.querySelector('textarea').value;
+            
+            // Create mailto link
+            const mailtoLink = `mailto:flourisholaiya@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Show success message
+            alert('Email client opened! Your message is ready to send.');
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('bg-white/95');
+            } else {
+                nav.classList.remove('bg-white/95');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector('.md\\:hidden button');
+        const mobileMenu = document.createElement('div');
+        mobileMenu.className = 'md:hidden bg-white shadow-lg absolute top-full left-0 right-0 hidden';
+        mobileMenu.innerHTML = `
+            <div class="px-4 py-2 space-y-2">
+                <a href="#home" class="block py-2 text-gray-700 hover:text-purple-600">Home</a>
+                <a href="#about" class="block py-2 text-gray-700 hover:text-purple-600">About</a>
+                <a href="#skills" class="block py-2 text-gray-700 hover:text-purple-600">Skills</a>
+                <a href="#projects" class="block py-2 text-gray-700 hover:text-purple-600">Projects</a>
+                <a href="#contact" class="block py-2 text-gray-700 hover:text-purple-600">Contact</a>
+            </div>
+        `;
+        
+        document.querySelector('nav > div').appendChild(mobileMenu);
+        
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking on links
+        mobileMenu.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A') {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.card-hover, section').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Add some interactive effects to project buttons
+        document.querySelectorAll('.project-card button').forEach(button => {
+            button.addEventListener('click', function() {
+                const projectTitle = this.closest('.project-card').querySelector('h3').textContent;
+                
+                if (this.textContent.includes('Code')) {
+                    alert(`${projectTitle} - Code repository will be available soon on GitHub!`);
+                } else if (this.textContent.includes('Demo')) {
+                    alert(`${projectTitle} - Live demo will be available soon!`);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
