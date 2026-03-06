@@ -1,701 +1,456 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flourish Olaiya - AI Engineer & Data Scientist</title>
+    <title>Flourish Olaiya | AI Engineer & Data Scientist</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Portfolio of Flourish Olaiya, an AI Engineer specializing in LLMs, RAG, and Agentic Systems. Built with a minimalist grayscale aesthetic.">
+    <!-- Fonts - Inter for clean, professional look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        primary: {
-                            50: '#f8fafc',
-                            100: '#f1f5f9',
-                            200: '#e2e8f0',
-                            300: '#cbd5e1',
-                            400: '#94a3b8',
-                            500: '#64748b',
-                            600: '#475569',
-                            700: '#334155',
-                            800: '#1e293b',
-                            900: '#0f172a',
+                        brand: {
+                            light: '#ffffff',
+                            dark: '#000000',
+                            gray: '#6b7280',
+                            silver: '#e5e7eb',
+                            charcoal: '#1f2937'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-out forwards',
+                        'slide-up': 'slideUp 0.8s ease-out forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(30px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' },
                         }
                     }
                 }
             }
         }
     </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
-        * {
+    <style type="text/tailwindcss">
+        /* Custom Grayscale Styles */
+        body {
+            @apply selection:bg-brand-gray selection:text-white bg-white dark:bg-black text-black dark:text-white transition-colors duration-500 overflow-x-hidden;
             font-family: 'Inter', sans-serif;
-            transition: all 0.3s ease;
         }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+
+        .glass-card {
+            @apply bg-white/10 dark:bg-white/5 backdrop-blur-md border border-black/10 dark:border-white/10 rounded-2xl transition-all duration-300;
         }
-        
-        .gradient-text {
-            background: linear-gradient(135deg, #000000 0%, #666666 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+
+        .glass-card:hover {
+            @apply border-black/30 dark:border-white/30 transform -translate-y-1 shadow-xl shadow-black/5 dark:shadow-white/5;
         }
-        
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
-        }
-        
-        .skill-tag {
-            transition: all 0.3s ease;
-            border: 1px solid #e2e8f0;
-        }
-        
-        .skill-tag:hover {
-            transform: scale(1.05);
-            background: #000000;
-            color: white;
-            border-color: #000000;
-        }
-        
-        .dark .skill-tag {
-            border-color: #374151;
-        }
-        
-        .dark .skill-tag:hover {
-            background: #ffffff;
-            color: #000000;
-            border-color: #ffffff;
-        }
-        
-        .typing-animation {
-            border-right: 2px solid #000000;
-            animation: blink 1s infinite;
-        }
-        
-        .dark .typing-animation {
-            border-right-color: #ffffff;
-        }
-        
-        @keyframes blink {
-            0%, 50% { border-color: transparent; }
-            51%, 100% { border-color: currentColor; }
-        }
-        
-        .floating {
-            animation: floating 3s ease-in-out infinite;
-        }
-        
-        @keyframes floating {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-        
+
         .nav-link {
-            position: relative;
-            overflow: hidden;
+            @apply text-brand-gray hover:text-black dark:hover:text-white transition-all duration-300 relative py-1;
         }
-        
+
         .nav-link::after {
             content: '';
-            position: absolute;
-            bottom: 0;
-            left: -100%;
-            width: 100%;
-            height: 2px;
-            background: #000000;
-            transition: left 0.3s ease;
+            @apply absolute bottom-0 left-0 w-0 h-0.5 bg-black dark:bg-white transition-all duration-300;
         }
-        
-        .dark .nav-link::after {
-            background: #ffffff;
-        }
-        
+
         .nav-link:hover::after {
+            @apply w-full;
+        }
+
+        /* Particles Layer */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
             left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
         }
-        
-        .project-card {
-            background: rgba(255, 255, 255, 0.95);
-            border: 2px solid #e2e8f0;
-            backdrop-filter: blur(10px);
+
+        /* Grayscale Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { @apply bg-white dark:bg-black; }
+        ::-webkit-scrollbar-thumb { @apply bg-brand-silver dark:bg-brand-charcoal rounded-full border-4 border-white dark:border-black; }
+
+        /* Smooth reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
         }
-        
-        .dark .project-card {
-            background: rgba(31, 41, 55, 0.95);
-            border: 2px solid #374151;
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
-        
-        .btn-primary {
-            background: #000000;
-            color: #ffffff;
-            border: 2px solid #000000;
-        }
-        
-        .btn-primary:hover {
-            background: #ffffff;
-            color: #000000;
-        }
-        
-        .btn-secondary {
-            background: transparent;
-            color: #000000;
-            border: 2px solid #000000;
-        }
-        
-        .btn-secondary:hover {
-            background: #000000;
-            color: #ffffff;
-        }
-        
-        .dark .btn-primary {
-            background: #ffffff;
-            color: #000000;
-            border-color: #ffffff;
-        }
-        
-        .dark .btn-primary:hover {
-            background: #000000;
-            color: #ffffff;
-        }
-        
-        .dark .btn-secondary {
-            color: #ffffff;
-            border-color: #ffffff;
-        }
-        
-        .dark .btn-secondary:hover {
-            background: #ffffff;
-            color: #000000;
-        }
-        
-        .skill-category {
-            border-left: 4px solid #000000;
-            background: #f8fafc;
-        }
-        
-        .dark .skill-category {
-            border-left-color: #ffffff;
-            background: #1f2937;
+
+        /* Grayscale Gradient Text */
+        .gradient-text {
+            @apply bg-clip-text text-transparent bg-gradient-to-r from-black to-brand-gray dark:from-white dark:to-brand-gray font-bold;
         }
     </style>
 </head>
-<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+<body class="dark">
+    <!-- Particle Background -->
+    <canvas id="particles-canvas"></canvas>
+
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg border-b border-gray-200 dark:border-gray-700">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4">
-                <div class="flex items-center space-x-4">
-                    <h1 class="text-2xl font-bold text-black dark:text-white">Flourish Olaiya</h1>
-                    <button id="theme-toggle" class="p-2 rounded-full focus:outline-none hover:bg-gray-100 dark:hover:bg-gray-800">
-                        <i class="fas fa-moon text-gray-700 dark:text-gray-300"></i>
-                    </button>
-                </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="nav-link text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white font-medium">Home</a>
-                    <a href="#about" class="nav-link text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white font-medium">About</a>
-                    <a href="#skills" class="nav-link text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white font-medium">Skills</a>
-                    <a href="#projects" class="nav-link text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white font-medium">Projects</a>
-                    <a href="#contact" class="nav-link text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white font-medium">Contact</a>
-                </div>
-                <button class="md:hidden focus:outline-none">
-                    <i class="fas fa-bars text-xl"></i>
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 py-6">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-3 group">
+                <img src="flourish_logo.png" alt="FO Logo" class="h-10 w-10 filter grayscale brightness-110 group-hover:scale-110 transition-transform duration-300">
+                <span class="text-xl font-display font-bold tracking-tighter hidden sm:block">FLOURISH OLAIYA</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8 font-medium">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#career" class="nav-link">Career</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <button id="theme-toggle" class="ml-4 p-2 rounded-full glass-card hover:bg-brand-silver dark:hover:bg-brand-charcoal">
+                    <!-- Minimalist Icons Instead of Emojis -->
+                    <svg id="sun-icon" class="hidden w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <svg id="moon-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
                 </button>
             </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="md:hidden glass-card p-2" id="mobile-menu-btn" aria-label="Toggle Mobile Menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Container -->
+        <div id="mobile-menu" class="fixed inset-0 bg-white/95 dark:bg-black/95 transform translate-x-full transition-transform duration-500 z-[60] flex flex-col items-center justify-center gap-8 md:hidden">
+            <button id="close-menu-btn" class="absolute top-8 right-8 p-3 glass-card" aria-label="Close Mobile Menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <a href="#home" class="text-3xl font-display font-bold hover:grayscale transition-all mobile-nav-link">Home</a>
+            <a href="#about" class="text-3xl font-display font-bold hover:grayscale transition-all mobile-nav-link">About</a>
+            <a href="#career" class="text-3xl font-display font-bold hover:grayscale transition-all mobile-nav-link">Career</a>
+            <a href="#skills" class="text-3xl font-display font-bold hover:grayscale transition-all mobile-nav-link">Skills</a>
+            <a href="#projects" class="text-3xl font-display font-bold hover:grayscale transition-all mobile-nav-link">Projects</a>
+            <a href="#contact" class="text-3xl font-display font-bold hover:grayscale transition-all mobile-nav-link">Contact</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center gradient-bg relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center text-white">
-                <div class="floating">
-                    <div class="w-48 h-48 mx-auto mb-8 rounded-full bg-white/10 backdrop-blur-md border-2 border-white/20 flex items-center justify-center">
-                        <i class="fas fa-brain text-6xl text-white"></i>
+    <header id="home" class="min-h-screen flex flex-col justify-center items-center relative px-6 text-center">
+        <div class="animate-fade-in space-y-8 max-w-4xl">
+            <!-- Profile Image Area -->
+            <div class="relative inline-block mb-4">
+                <div class="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-2 border-brand-silver dark:border-brand-charcoal grayscale hover:grayscale-0 transition-all duration-700 shadow-2xl relative z-10">
+                    <img src="EmptyName 157.jpg" alt="Flourish Olaiya Profile" class="w-full h-full object-cover">
+                </div>
+                <!-- Grayscale Rings -->
+                <div class="absolute inset-0 -m-4 border border-brand-gray/20 rounded-full animate-pulse"></div>
+                <div class="absolute inset-0 -m-8 border border-brand-gray/10 rounded-full animate-pulse" style="animation-delay: 1s"></div>
+            </div>
+
+            <div class="animate-slide-up">
+                <h2 class="text-brand-gray font-display font-medium tracking-widest text-sm uppercase mb-3">AI Engineer & Data Scientist</h2>
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-display font-extrabold tracking-tight mb-6">
+                    FLOURISH <span class="gradient-text">OLAIYA</span>
+                </h1>
+                <p class="text-lg md:text-xl text-brand-gray/80 dark:text-brand-gray max-w-2xl mx-auto leading-relaxed font-light italic">
+                    I specialize in designing, deploying, and scaling intelligent AI systems that combine research innovation with production engineering discipline.
+                </p>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mt-10">
+                <a href="#projects" class="px-8 py-4 bg-black dark:bg-white text-white dark:text-black rounded-full font-semibold hover:scale-105 transition-all w-full sm:w-auto shadow-xl">
+                    View My Work
+                </a>
+                <a href="https://drive.google.com/file/d/1X016m73yZ3hB-T7Wq_p4_n1_y_v_y_y/view?usp=sharing" target="_blank" class="px-8 py-4 glass-card font-semibold hover:bg-brand-silver dark:hover:bg-brand-charcoal w-full sm:w-auto border-2 border-brand-silver dark:border-brand-charcoal" aria-label="Download Flourish Olaiya CV">
+                    Download CV
+                </a>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 animate-bounce">
+            <svg class="w-6 h-6 text-brand-gray" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 px-6 lg:px-12 bg-white/30 dark:bg-brand-dark/30">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="reveal">
+                <h4 class="text-brand-gray font-medium tracking-widest text-xs uppercase mb-2">Professional Summary</h4>
+                <h2 class="text-4xl md:text-5xl font-display font-bold mb-8">Engineering Intelligent <span class="gradient-text">Frontiers</span></h2>
+                <div class="space-y-6 text-brand-gray dark:text-brand-gray/90 leading-relaxed text-lg font-light">
+                    <p>
+                        With 4+ years of experience, I design and maintain production-grade intelligent systems, specializing in Large Language Models (LLMs), Retrieval-Augmented Generation (RAG), and agentic workflow orchestration.
+                    </p>
+                    <p>
+                        My expertise lies in translating early-stage research prototypes into scalable, secure, and maintainable systems using modern MLOps and cloud-native architectures.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 mt-8">
+                        <div class="p-6 glass-card text-center border-brand-silver dark:border-brand-charcoal">
+                            <div class="text-3xl font-bold mb-1">4+</div>
+                            <div class="text-xs text-brand-gray uppercase tracking-wider">Years Experience</div>
+                        </div>
+                        <div class="p-6 glass-card text-center border-brand-silver dark:border-brand-charcoal">
+                            <div class="text-3xl font-bold mb-1">10+</div>
+                            <div class="text-xs text-brand-gray uppercase tracking-wider">AI Projects</div>
+                        </div>
                     </div>
                 </div>
-                <h1 class="text-5xl md:text-7xl font-bold mb-6">
-                    Hi, I'm <span class="typing-animation">Flourish</span>
-                </h1>
-                <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed font-light">
-                    AI Engineer || Data Scientist
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="#projects" class="bg-white text-black px-8 py-3 rounded font-semibold hover:bg-gray-100 transition-all transform hover:scale-105 border-2 border-white">
-                        View My Work
-                    </a>
-
-                    <a href="https://drive.google.com/file/d/1aV4wgm7mAIC9qV0Hfp702MxoWmDhXhAp/view?usp=drivesdk" 
-                        id="cv-button" 
-                        class="border-2 border-white text-white px-8 py-3 rounded font-semibold hover:bg-white hover:text-black transition-all"
-                        target="_blank" 
-                        rel="noopener noreferrer">
-                        Download My CV
-                    </a>
-                    
-
-                    <!--a href="https://drive.google.com" download="Olaiya_FLourish_Complete_CV.pdf" id="cv-button" class="border-2 border-white text-white px-8 py-3 rounded font-semibold hover:bg-white hover:text-black transition-all" target="_blank" rel="noopener noreferrer">Download My CV</a-->
-
-                    <!--a href="FLOURISH-Olaiya-CV.pdf", id="cv-button" class="border-2 border-white text-white px-8 py-3 rounded font-semibold hover:bg-white hover:text-black transition-all"
-                        Download my CV   /file/d/1VygTiMljszpBchBFkUwZexBDozft4NAk/
-                </a-->
-
-                
-                    <!--a href="https://drive.google.com/file/d/1VygTiMljszpBchBFkUwZexBDozft4NAk/view?usp=drivesdk" id="cv-button"  class="border-2 border-white text-white px-8 py-3 rounded font-semibold hover:bg-white hover:text-black transition-all" target="_blank" rel="noopener noreferrer">
-                        Download my CV
-                   </a-->
-                        <!--a href="https://drive.google.com/uc?export=download&id=1aZeVTYKpFxSO5VuMglBD3pAW-LgqJ_ZT" id="cv-button" class="border-2 border-white text-white px-8 py-3 rounded font-semibold hover:bg-white hover:text-black transition-all" target="_blank" rel="noopener noreferrer">
-                        Download my CV
-                </a-->
-                    <a href="#contact" class="border-2 border-white text-white px-8 py-3 rounded font-semibold hover:bg-white hover:text-black transition-all">
-                        Get In Touch
-                    </a>
+            </div>
+            
+            <div class="reveal relative">
+                <div class="aspect-square rounded-2xl overflow-hidden glass-card p-4 grayscale group hover:grayscale-0 transition-all duration-700">
+                    <img src="Screenshot_20251122-000553 (1).png" alt="Collaborative Workshop" class="w-full h-full object-cover rounded-xl shadow-inner">
                 </div>
+                <!-- Geometric Overlays -->
+                <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-brand-charcoal/20 dark:bg-white/5 rounded-2xl -z-10 animate-float"></div>
+                <div class="absolute -top-6 -right-6 w-24 h-24 border border-brand-gray/30 rounded-full -z-10 animate-float" style="animation-delay: 2s"></div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-gray-50 dark:bg-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">About Me</h2>
-                <div class="w-24 h-1 bg-black dark:bg-white mx-auto"></div>
+    <!-- Career Timeline -->
+    <section id="career" class="py-24 px-6 lg:px-12">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-display font-bold mb-4">Professional <span class="gradient-text">Journey</span></h2>
+                <p class="text-brand-gray font-light">A timeline of innovation and continuous growth.</p>
+            </div>
+
+            <div class="space-y-12 relative">
+                <!-- Vertical Line -->
+                <div class="absolute left-0 sm:left-1/2 top-0 bottom-0 w-0.5 bg-brand-silver dark:bg-brand-charcoal transform -translate-x-1/2 hidden sm:block"></div>
+
+                <!-- Schoolinka -->
+                <div class="reveal flex flex-col sm:flex-row items-center justify-between sm:gap-16 relative">
+                    <div class="sm:w-1/2 text-left sm:text-right">
+                        <div class="text-brand-gray text-sm font-semibold mb-1 uppercase tracking-tighter">June 2025 — Dec 2025</div>
+                        <h3 class="text-2xl font-bold">AI Engineer</h3>
+                        <div class="text-brand-gray italic mb-4">Schoolinka (Contract)</div>
+                        <p class="text-brand-gray/80 text-sm leading-relaxed sm:pl-0 pl-6 border-l-2 border-brand-silver sm:border-0">
+                            Designed production RAG-based coaching systems with WhatsApp integration and multi-agent LLM workflows.
+                        </p>
+                    </div>
+                    <div class="hidden sm:block absolute left-1/2 w-4 h-4 rounded-full bg-white dark:bg-black border-4 border-black dark:border-white transform -translate-x-1/2 z-10 shadow-lg"></div>
+                    <div class="sm:w-1/2"></div>
+                </div>
+
+                <!-- DSN FUNAAB -->
+                <div class="reveal flex flex-col sm:flex-row-reverse items-center justify-between sm:gap-16 relative">
+                    <div class="sm:w-1/2 text-left">
+                        <div class="text-brand-gray text-sm font-semibold mb-1 uppercase tracking-tighter">Feb 2025 — Present</div>
+                        <h3 class="text-2xl font-bold">Data Science Lead</h3>
+                        <div class="text-brand-gray italic mb-4">DSN FUNAAB (Volunteer)</div>
+                        <p class="text-brand-gray/80 text-sm leading-relaxed pl-6 border-l-2 border-brand-silver">
+                            Leading and mentoring 200+ members in applied ML, analytics engineering, and AI system design.
+                        </p>
+                    </div>
+                    <div class="hidden sm:block absolute left-1/2 w-4 h-4 rounded-full bg-white dark:bg-black border-4 border-black dark:border-white transform -translate-x-1/2 z-10 shadow-lg"></div>
+                    <div class="sm:w-1/2"></div>
+                </div>
+
+                <!-- Robotics Network -->
+                <div class="reveal flex flex-col sm:flex-row items-center justify-between sm:gap-16 relative">
+                    <div class="sm:w-1/2 text-left sm:text-right">
+                        <div class="text-brand-gray text-sm font-semibold mb-1 uppercase tracking-tighter">May 2024 — April 2025</div>
+                        <h3 class="text-2xl font-bold">Community Lead</h3>
+                        <div class="text-brand-gray italic mb-4">Robotics & AI Network</div>
+                        <p class="text-brand-gray/80 text-sm leading-relaxed sm:pl-0 pl-6 border-l-2 border-brand-silver sm:border-0">
+                            Coordinated engineering programs for 150+ participants, supervising R&D projects in intelligent perception.
+                        </p>
+                    </div>
+                    <div class="hidden sm:block absolute left-1/2 w-4 h-4 rounded-full bg-white dark:bg-black border-4 border-black dark:border-white transform -translate-x-1/2 z-10 shadow-lg"></div>
+                    <div class="sm:w-1/2"></div>
+                </div>
             </div>
             
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <div class="bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-600">
-                        <div class="w-full h-64 bg-gray-200 dark:bg-gray-600 rounded-xl flex items-center justify-center overflow-hidden">
-                            <img src="IMG-20251217-WA0057.jpg" alt="Profile picture" class="w-full h-full object-cover">
-                        </div>
-                    </div>
+            <!-- Education Box -->
+            <div class="mt-20 p-8 glass-card border-dashed border-2 reveal">
+                <div class="flex items-center gap-4 mb-4">
+                    <svg class="w-8 h-8 text-brand-gray" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 14l9-5-9-5-9 5 9 5z"></path><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path></svg>
+                    <h3 class="text-xl font-bold uppercase tracking-widest">Education</h3>
                 </div>
-                
-                <div>
-                    <h3 class="text-3xl font-bold mb-6">Passionate AI Engineer & Data Scientist</h3>
-                    <p class="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                        With 4 years of hands-on experience in artificial intelligence and data science, I specialize in developing cutting-edge machine learning solutions that solve real-world problems. My journey began as an engineering undergraduate, and I've since evolved into a versatile AI practitioner.
-                    </p>
-                    <p class="text-lg text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-                        I'm passionate about leveraging advanced technologies like computer vision, natural language processing, and deep learning to create impactful solutions in healthcare, agriculture, and mental health domains.
-                    </p>
-                    
-                    <div class="grid grid-cols-2 gap-6">
-                        <div class="text-center p-4 bg-white dark:bg-gray-700 rounded-xl shadow border border-gray-200 dark:border-gray-600">
-                            <div class="text-3xl font-bold text-black dark:text-white">4+</div>
-                            <div class="text-gray-600 dark:text-gray-300">Years Experience</div>
-                        </div>
-                        <div class="text-center p-4 bg-white dark:bg-gray-700 rounded-xl shadow border border-gray-200 dark:border-gray-600">
-                            <div class="text-3xl font-bold text-black dark:text-white">17+</div>
-                            <div class="text-gray-600 dark:text-gray-300">Projects Completed</div>
-                        </div>
-                    </div>
-                </div>
+                <h4 class="text-lg font-semibold">B.Eng Agricultural & Bio-Resources Engineering</h4>
+                <p class="text-brand-gray">Federal University of Agriculture, Abeokuta (2021 — Present)</p>
             </div>
         </div>
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-white dark:bg-gray-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Technical Skills</h2>
-                <div class="w-24 h-1 bg-black dark:bg-white mx-auto mb-6"></div>
-                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                    A comprehensive toolkit for building intelligent solutions across various domains
-                </p>
+    <section id="skills" class="py-24 px-6 lg:px-12 bg-black/5 dark:bg-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <h4 class="text-brand-gray font-medium tracking-widest text-xs uppercase mb-2">Capabilities</h4>
+                <h2 class="text-4xl md:text-5xl font-display font-bold">Technical <span class="gradient-text">Arsenal</span></h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- LLM skill -->
+                <div class="glass-card p-8 reveal">
+                    <h3 class="text-xl font-bold mb-6 flex items-center gap-3">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 21h6l-.75-4M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        AI & Agentic Systems
+                    </h3>
+                    <ul class="space-y-3 text-brand-gray text-sm">
+                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gray"></div> LLM Integration & RAG</li>
+                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gray"></div> Agentic Workflow Orchestration</li>
+                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gray"></div> Prompt Engineering (DS2)</li>
+                    </ul>
+                </div>
+
+                <!-- ML Skill -->
+                <div class="glass-card p-8 reveal" style="transition-delay: 0.1s">
+                    <h3 class="text-xl font-bold mb-6 flex items-center gap-3">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                        Core ML & DL
+                    </h3>
+                    <ul class="space-y-3 text-brand-gray text-sm">
+                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gray"></div> PyTorch / TensorFlow</li>
+                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gray"></div> Transformers / Computer Vision</li>
+                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gray"></div> Scikit-Learn / Neural Nets</li>
+                    </ul>
+                </div>
+
+                <!-- MLOps Skill -->
+                <div class="glass-card p-8 reveal" style="transition-delay: 0.2s">
+                    <h3 class="text-xl font-bold mb-6 flex items-center gap-3">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-7 0V4"></path></svg>
+                        Production & Data
+                    </h3>
+                    <ul class="space-y-3 text-brand-gray text-sm">
+                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gray"></div> FastAPI / Docker / CI-CD</li>
+                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gray"></div> Pinecone / ChromaDB / SQL</li>
+                        <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-brand-gray"></div> AWS / GCP / Vertex AI</li>
+                    </ul>
+                </div>
             </div>
             
-            <div class="grid lg:grid-cols-2 gap-8">
-                <!-- Data Analytics -->
-                <div class="skill-category p-6 rounded-lg">
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-chart-line text-2xl mr-4"></i>
-                        <h3 class="text-xl font-bold">Data Analytics</h3>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">Pandas</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">NumPy</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">Excel</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">Power BI</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">Statistical Analysis</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">Data Visualization</span>
-                    </div>
-                </div>
-
-                <!-- Machine Learning -->
-                <div class="skill-category p-6 rounded-lg">
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-robot text-2xl mr-4"></i>
-                        <h3 class="text-xl font-bold">Machine Learning</h3>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">Scikit-learn</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">Predictive Modeling</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">Classification</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">Regression</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">Clustering</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">Feature Engineering</span>
-                    </div>
-                </div>
-
-                <!-- Deep Learning -->
-                <div class="skill-category p-6 rounded-lg">
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-brain text-2xl mr-4"></i>
-                        <h3 class="text-xl font-bold">Deep Learning</h3>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">TensorFlow</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">Keras</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">Computer Vision</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">OpenCV</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">CNN</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">Image Processing</span>
-                    </div>
-                </div>
-
-                <!-- Natural Language Processing -->
-                <div class="skill-category p-6 rounded-lg">
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-comments text-2xl mr-4"></i>
-                        <h3 class="text-xl font-bold">Natural Language Processing</h3>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">Transformers</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">BERT</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">GPT</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">Text Classification</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">Sentiment Analysis</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">RAG Systems</span>
-                    </div>
-                </div>
-
-                <!-- Deployment & Tools -->
-                <div class="skill-category p-6 rounded-lg">
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-cloud text-2xl mr-4"></i>
-                        <h3 class="text-xl font-bold">Deployment & Tools</h3>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">Gradio</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">Hugging Face</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">Streamlit</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">Render</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">Vercel</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">Git</span>
-                    </div>
-                </div>
-
-                <!-- Programming -->
-                <div class="skill-category p-6 rounded-lg">
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-code text-2xl mr-4"></i>
-                        <h3 class="text-xl font-bold">Programming</h3>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">Python</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">Data Structures</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">Algorithms</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">OOP</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">API Development</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">Flask</span>
-                    </div>
-                </div>
+            <!-- Certifications Scroll -->
+            <div class="mt-16 flex flex-wrap justify-center gap-4 reveal">
+                <span class="px-4 py-2 text-xs font-bold border border-brand-silver dark:border-brand-charcoal text-brand-gray grayscale hover:grayscale-0 transition-all uppercase tracking-widest cursor-default">Google Data Analytics</span>
+                <span class="px-4 py-2 text-xs font-bold border border-brand-silver dark:border-brand-charcoal text-brand-gray grayscale hover:grayscale-0 transition-all uppercase tracking-widest cursor-default">Deep Learning Spec.</span>
+                <span class="px-4 py-2 text-xs font-bold border border-brand-silver dark:border-brand-charcoal text-brand-gray grayscale hover:grayscale-0 transition-all uppercase tracking-widest cursor-default">ML - Kaggle</span>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-gray-50 dark:bg-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Featured Projects</h2>
-                <div class="w-24 h-1 bg-black dark:bg-white mx-auto mb-6"></div>
-                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                    Innovative AI solutions addressing real-world challenges across multiple domains
-                </p>
+    <section id="projects" class="py-24 px-6 lg:px-12">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4 reveal">
+                <div>
+                    <h4 class="text-brand-gray font-medium tracking-widest text-xs uppercase mb-2">Showcase</h4>
+                    <h2 class="text-4xl md:text-5xl font-display font-bold">Featured <span class="gradient-text">Systems</span></h2>
+                </div>
+                <div class="text-brand-gray font-light max-w-sm text-right">
+                    Selected work specializing in RAG, Computer Vision, and medical AI.
+                </div>
             </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- AI Coach WhatsApp Chatbot -->
-                <div class="card-hover project-card rounded-2xl overflow-hidden shadow-lg">
-                    <div class="p-6 h-full">
-                        <div class="w-16 h-16 bg-black dark:bg-white rounded-full flex items-center justify-center mb-4">
-                            <i class="fas fa-chalkboard-teacher text-2xl text-white dark:text-black"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">AI Coach</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-4">
-                            RAG-powered WhatsApp chatbot designed to assist teachers with educational guidance, lesson planning, and pedagogical support.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">RAG</span>
-                            <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">NLP</span>
-                            <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">WhatsApp API</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="https://github.com/lourish789/Class_Management_bot/tree/main" class="flex-1 btn-primary py-2 rounded font-medium text-center">
-                                <i class="fas fa-code mr-2"></i>Code
-                            </a>
 
-                            </button>
-                            <button class="flex-1 btn-secondary py-2 rounded font-medium text-center">
-                                <i class="fas fa-external-link-alt mr-2"></i>Demo
-                            </button>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <!-- Project 1 -->
+                <div class="reveal group overflow-hidden rounded-2xl glass-card">
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-6">
+                            <h3 class="text-2xl font-bold tracking-tight">AI Coaching Assistant</h3>
+                            <a href="#" class="glass-card p-2 grayscale group-hover:bg-brand-silver dark:group-hover:bg-brand-charcoal">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                            </a>
+                        </div>
+                        <p class="text-brand-gray text-sm leading-relaxed mb-6 font-light">
+                            Agentic RAG-powered conversational assistant for teachers, supporting semantic retrieval and structured knowledge orchestration via WhatsApp.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-[10px] px-3 py-1 border border-black/10 dark:border-white/10 text-brand-gray">PINECONE</span>
+                            <span class="text-[10px] px-3 py-1 border border-black/10 dark:border-white/10 text-brand-gray">WHATSAPP API</span>
+                            <span class="text-[10px] px-3 py-1 border border-black/10 dark:border-white/10 text-brand-gray">LLM ORCHESTRATION</span>
                         </div>
                     </div>
                 </div>
 
-
-                
-<!--/div-->
-            
-                <!-- Study Buddy -->
-                <div class="card-hover project-card rounded-2xl overflow-hidden shadow-lg">
-                    <div class="p-6 h-full">
-                        <div class="w-16 h-16 bg-black dark:bg-white rounded-full flex items-center justify-center mb-4">
-                            <i class="fas fa-book-reader text-2xl text-white dark:text-black"></i>
+                <!-- Project 2 -->
+                <div class="reveal group overflow-hidden rounded-2xl glass-card" style="transition-delay: 0.1s">
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-6">
+                            <h3 class="text-2xl font-bold tracking-tight">Breast Cancer Detection</h3>
+                            <a href="#" class="glass-card p-2 grayscale group-hover:bg-brand-silver dark:group-hover:bg-brand-charcoal">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                            </a>
                         </div>
-                        <h3 class="text-xl font-bold mb-3">Study Buddy</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-4">
-                            An AI-powered educational assistant that analyzes uploaded documents, generates audio summaries, and provides answers to student questions — enhancing learning speed and retention for academic users.
+                        <p class="text-brand-gray text-sm leading-relaxed mb-6 font-light">
+                            Multi-modal diagnostic system using CNNs for MRI/ultrasound analysis with integrated explainability visualization for medical interpreted data.
                         </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">Generative AI</span>
-                            <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">Text-to-Speech</span>
-                            <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">RAG</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="https://github.com/lourish789/Study_buddy" class="flex-1 btn-primary py-2 rounded font-medium text-center">
-                                <i class="fas fa-code mr-2"></i>Code
-                            </a>
-                            <a href="https://studybuddy-eosin.vercel.app/" class="flex-1 btn-secondary py-2 rounded font-medium text-center">
-                                <i class="fas fa-external-link-alt mr-2"></i>Demo
-                            </a>
-                        </div>
-                    </div>
-                </div>
-        
-        
-        
-        
-                    <!-- Web Crawler Research Assistant -->
-                <div class="card-hover project-card rounded-2xl overflow-hidden shadow-lg">
-                    <div class="p-6 h-full">
-                        <div class="w-16 h-16 bg-black dark:bg-white rounded-full flex items-center justify-center mb-4">
-                            <i class="fas fa-search text-2xl text-white dark:text-black"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">Web Crawler Research Assistant</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-4">
-                            An intelligent article-finding research tool that crawls academic resources using title keywords, authors, and publication dates. Built with a RAG-powered pipeline to help researchers access relevant papers quickly and efficiently.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">RAG</span>
-                            <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">NLP</span>
-                            <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">WebScarping</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="https://github.com/lourish789/Web_crawler" class="flex-1 btn-primary py-2 rounded font-medium text-center">
-                                <i class="fas fa-code mr-2"></i>Code
-                            </a>
-                            <a href="https://web-crawler-umber.vercel.app/" class="flex-1 btn-secondary py-2 rounded font-medium text-center">
-                                <i class="fas fa-external-link-alt mr-2"></i>Demo
-                            </a>
-                        </div>
-                    </div>
-                </div>
-        
-                <!-- Cancer Care Chatbot -->
-                <div class="card-hover project-card rounded-2xl overflow-hidden shadow-lg">
-                    <div class="p-6 h-full">
-                        <div class="w-16 h-16 bg-black dark:bg-white rounded-full flex items-center justify-center mb-4">
-                            <i class="fas fa-heartbeat text-2xl text-white dark:text-black"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">CanCare</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-4">
-                            AI-powered healthcare chatbot providing support and information to cancer patients and healthcare facilities with empathetic responses.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">Healthcare AI</span>
-                            <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">NLP</span>
-                            <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">Patient Care</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="https://github.com/lourish789/Simple-Whatsapp-Chatbot" class="flex-1 btn-primary py-2 rounded font-medium text-center"
-                                <i class="fas fa-code mr-2"></i>Code
-                            </a>
-                            </button>
-                            <button class="flex-1 btn-secondary py-2 rounded font-medium text-center">
-                                <i class="fas fa-external-link-alt mr-2"></i>Demo
-                            </button>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-[10px] px-3 py-1 border border-black/10 dark:border-white/10 text-brand-gray">PYTORCH</span>
+                            <span class="text-[10px] px-3 py-1 border border-black/10 dark:border-white/10 text-brand-gray">XAI</span>
+                            <span class="text-[10px] px-3 py-1 border border-black/10 dark:border-white/10 text-brand-gray">G-APPS</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Cassava Disease Identifier -->
-                <div class="card-hover project-card rounded-2xl overflow-hidden shadow-lg">
-                    <div class="p-6 h-full">
-                        <div class="w-16 h-16 bg-black dark:bg-white rounded-full flex items-center justify-center mb-4">
-                            <i class="fas fa-leaf text-2xl text-white dark:text-black"></i>
+                <!-- Project 3 -->
+                <div class="reveal group overflow-hidden rounded-2xl glass-card" style="transition-delay: 0.2s">
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-6">
+                            <h3 class="text-2xl font-bold tracking-tight">Mental Health AI</h3>
+                            <a href="#" class="glass-card p-2 grayscale group-hover:bg-brand-silver dark:group-hover:bg-brand-charcoal">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                            </a>
                         </div>
-                        <h3 class="text-xl font-bold mb-3">Cassava Disease Identifier</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-4">
-                            AI-powered computer vision system for early detection and classification of cassava plant diseases using deep learning.
+                        <p class="text-brand-gray text-sm leading-relaxed mb-6 font-light">
+                            Conversational assistant integrating EEG-based emotional state detection with real-time inference workflows and LLM decision layers.
                         </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">Computer Vision</span>
-                            <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">CNN</span>
-                            <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">Agriculture</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="https://github.com/lourish789/Cassava_Disease_classification" class="flex-1 btn-primary py-2 rounded font-medium text-center">
-                                <i class="fas fa-code mr-2"></i>Code
-                            </a>
-                            <a href="https://huggingface.co/spaces/Fluospark128/Cassava_Disease_Classifier" class="flex-1 btn-secondary py-2 rounded font-medium text-center">
-                                <i class="fas fa-external-link-alt mr-2"></i>Demo
-                            </a>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-[10px] px-3 py-1 border border-black/10 dark:border-white/10 text-brand-gray">EEG SIGNAL</span>
+                            <span class="text-[10px] px-3 py-1 border border-black/10 dark:border-white/10 text-brand-gray">CNN-TRANSFORMER</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Lung Cancer Identifier -->
-                <div class="card-hover project-card rounded-2xl overflow-hidden shadow-lg">
-                    <div class="p-6 h-full">
-                        <div class="w-16 h-16 bg-black dark:bg-white rounded-full flex items-center justify-center mb-4">
-                            <i class="fas fa-lungs text-2xl text-white dark:text-black"></i>
+                <!-- Project 4 -->
+                <div class="reveal group overflow-hidden rounded-2xl glass-card" style="transition-delay: 0.3s">
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-6">
+                            <h3 class="text-2xl font-bold tracking-tight">Agricultural Disease Detection</h3>
+                            <a href="#" class="glass-card p-2 grayscale group-hover:bg-brand-silver dark:group-hover:bg-brand-charcoal">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                            </a>
                         </div>
-                        <h3 class="text-xl font-bold mb-3">Lung Cancer Detector</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-4">
-                            Advanced medical imaging AI for detecting lung cancer from CT scans with high accuracy and early-stage identification.
+                        <p class="text-brand-gray text-sm leading-relaxed mb-6 font-light">
+                            Cassava leaf disease classification models deployed via scalable mobile-accessible inference pipelines for real-world field diagnostics.
                         </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">Medical AI</span>
-                            <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">CNN</span>
-                            <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">Healthcare</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="https://github.com/lourish789/Lung_Cancer_Image_Classification" class="flex-1 btn-primary py-2 rounded font-medium text-center">
-                                <i class="fas fa-code mr-2"></i>Code
-                            </a>
-                            <button class="flex-1 btn-secondary py-2 rounded font-medium">
-                                <i class="fas fa-external-link-alt mr-2"></i>Demo
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Breast Cancer Identifier -->
-                <div class="card-hover project-card rounded-2xl overflow-hidden shadow-lg">
-                    <div class="p-6 h-full">
-                        <div class="w-16 h-16 bg-black dark:bg-white rounded-full flex items-center justify-center mb-4">
-                            <i class="fas fa-ribbon text-2xl text-white dark:text-black"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">Breast Cancer Classifier</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-4">
-                            Multi-modal AI system analyzing MRI, Ultrasound & Mammogram images for comprehensive breast cancer detection.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">Multi-modal</span>
-                            <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">Deep Learning</span>
-                            <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">Healthcare</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <button class="flex-1 btn-primary py-2 rounded font-medium text-center">
-                                <i class="fas fa-code mr-2"></i>Code
-                            </button>
-                            <a href="https://huggingface.co/spaces/Fluospark128/Breast_Cancer_Prediction" class="flex-1 btn-secondary py-2 rounded font-medium text-center">
-                                <i class="fas fa-external-link-alt mr-2"></i>Demo
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Mental Aid Model -->
-                <div class="card-hover project-card rounded-2xl overflow-hidden shadow-lg">
-                    <div class="p-6 h-full">
-                        <div class="w-16 h-16 bg-black dark:bg-white rounded-full flex items-center justify-center mb-4">
-                            <i class="fas fa-brain text-2xl text-white dark:text-black"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">Mental Aid</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-4">
-                            Revolutionary AI model analyzing EEG brain signals for mental health assessment and personalized therapy recommendations.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">EEG Analysis</span>
-                            <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">Mental Health</span>
-                            <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">Signal Processing</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="https://github.com/lourish789/Mind_aid" class="flex-1 btn-primary py-2 rounded font-medium text-center">
-                                <i class="fas fa-code mr-2"></i>Code
-                            </a>
-                            <a href="https://huggingface.co/spaces/Fluospark128/Mind_Aid_Demo?logs=container" class="flex-1 btn-secondary py-2 rounded font-medium text-center">
-                                <i class="fas fa-external-link-alt mr-2"></i>Demo
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Book Genre Prediction -->
-                <div class="card-hover project-card rounded-2xl overflow-hidden shadow-lg">
-                    <div class="p-6 h-full">
-                        <div class="w-16 h-16 bg-black dark:bg-white rounded-full flex items-center justify-center mb-4">
-                            <i class="fas fa-book text-2xl text-white dark:text-black"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">Book Genre Predictor</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-4">
-                            Advanced NLP model using transformers to predict book genres from novel content with high accuracy.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">NLP</span>
-                            <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">Transformers</span>
-                            <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">Classification</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="https://github.com/lourish789/Book_Genre_Prediction" class="flex-1 btn-primary py-2 rounded font-medium text-center">
-                                <i class="fas fa-code mr-2"></i>Code
-                            </a>
-                            <a href="https://huggingface.co/spaces/Fluospark128/Genre_Prediction_App" class="flex-1 btn-secondary py-2 rounded font-medium text-center">
-                                <i class="fas fa-external-link-alt mr-2"></i>Demo
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Quizlet Project -->
-                <div class="card-hover project-card rounded-2xl overflow-hidden shadow-lg">
-                    <div class="p-6 h-full">
-                        <div class="w-16 h-16 bg-black dark:bg-white rounded-full flex items-center justify-center mb-4">
-                            <i class="fas fa-question-circle text-2xl text-white dark:text-black"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">Quizlet Project</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-4">
-                            AI Quiz generator model built collaboratively with developers. Generates engineering-based quiz questions based on user input.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">LLMs</span>
-                            <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">Transformers</span>
-                            <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-full">Education</span>
-                        </div>
-                        <div class="flex gap-3">
-                            <a href="https://github.com/ASTROVERSE-INNOVATORS-Hackthon-Team/quizlet.git" class="flex-1 btn-primary py-2 rounded font-medium text-center">
-                                <i class="fas fa-code mr-2"></i>Code
-                            </a>
-                            <a href="https://quizlet-nu.vercel.app/" class="flex-1 btn-secondary py-2 rounded font-medium text-center">
-                                <i class="fas fa-external-link-alt mr-2"></i>Demo
-                            </a>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-[10px] px-3 py-1 border border-black/10 dark:border-white/10 text-brand-gray">TENSORFLOW</span>
+                            <span class="text-[10px] px-3 py-1 border border-black/10 dark:border-white/10 text-brand-gray">M-VISION</span>
                         </div>
                     </div>
                 </div>
@@ -704,292 +459,173 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 gradient-bg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Let's Connect</h2>
-                <div class="w-24 h-1 bg-white mx-auto mb-6"></div>
-                <p class="text-xl text-white/90 max-w-3xl mx-auto">
-                    Ready to collaborate on your next AI project? Let's discuss how we can build something amazing together.
-                </p>
+    <section id="contact" class="py-24 px-6 lg:px-12 bg-black/5 dark:bg-white/5">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <h4 class="text-brand-gray font-medium tracking-widest text-xs uppercase mb-2">Collaboration</h4>
+                <h2 class="text-4xl md:text-5xl font-display font-bold">Start a <span class="gradient-text">Dialogue</span></h2>
             </div>
             
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <div class="space-y-8">
-                        <div class="flex items-center space-x-4">
-                            <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center border border-white/30">
-                                <i class="fas fa-envelope text-2xl text-white"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-semibold text-white">Email</h3>
-                                <a href="mailto:flourisholaiya@gmail.com" class="text-white/90 hover:text-white transition-colors">
-                                    flourisholaiya@gmail.com
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center space-x-4">
-                            <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center border border-white/30">
-                                <i class="fab fa-linkedin text-2xl text-white"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-semibold text-white">LinkedIn</h3>
-                                <a href="https://linkedin.com/in/flourish-olaiya" target="_blank" class="text-white/90 hover:text-white transition-colors">
-                                    linkedin.com/in/flourish-olaiya
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center space-x-4">
-                            <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center border border-white/30">
-                                <i class="fab fa-github text-2xl text-white"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-semibold text-white">GitHub</h3>
-                                <a href="https://github.com/lourish789" target="_blank" class="text-white/90 hover:text-white transition-colors">
-                                    github.com/lourish789
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+            <form action="mailto:flourisholaiya6@gmail.com?subject=Portfolio Inquiry" method="post" enctype="text/plain" class="reveal space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <input type="text" name="name" placeholder="Your Name" class="w-full p-4 glass-card bg-transparent border-brand-silver dark:border-brand-charcoal focus:border-brand-gray outline-none transition-all" required>
+                    <input type="email" name="email" placeholder="Your Email" class="w-full p-4 glass-card bg-transparent border-brand-silver dark:border-brand-charcoal focus:border-brand-gray outline-none transition-all" required>
                 </div>
-                
-                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
-                    <h3 class="text-2xl font-bold text-white mb-6">Send a Message</h3>
-                    <form class="space-y-6">
-                        <div>
-                            <input type="text" placeholder="Your Name" class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent">
-                        </div>
-                        <div>
-                            <input type="email" placeholder="Your Email" class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent">
-                        </div>
-                        <div>
-                            <input type="text" placeholder="Subject" class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent">
-                        </div>
-                        <div>
-                            <textarea rows="5" placeholder="Your Message" class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent resize-none"></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-white text-black py-3 rounded font-semibold hover:bg-gray-100 transition-colors transform hover:scale-105">
-                            <i class="fas fa-paper-plane mr-2"></i>Send Message
-                        </button>
-                    </form>
+                <textarea name="message" rows="6" placeholder="Project details or Inquiry..." class="w-full p-4 glass-card bg-transparent border-brand-silver dark:border-brand-charcoal focus:border-brand-gray outline-none transition-all" required></textarea>
+                <div class="text-center">
+                    <button type="submit" class="px-12 py-4 bg-black dark:bg-white text-white dark:text-black font-bold rounded-full hover:scale-105 transition-all shadow-xl">
+                        Send Message
+                    </button>
                 </div>
-            </div>
+            </form>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-3 gap-8">
-                <div>
-                    <h3 class="text-2xl font-bold text-black dark:text-white mb-4">Flourish Olaiya</h3>
-                    <p class="text-gray-600 dark:text-gray-400 mb-4">
-                        AI Engineer & Data Scientist passionate about creating intelligent solutions that make a difference.
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="mailto:flourisholaiya@gmail.com" class="w-10 h-10 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                        <a href="https://linkedin.com/in/flourish-olaiya" target="_blank" class="w-10 h-10 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="https://github.com/lourish789" target="_blank" class="w-10 h-10 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
+    <footer class="py-12 px-6 border-t border-brand-silver dark:border-brand-charcoal">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex flex-col items-center md:items-start">
+                <div class="flex items-center gap-2 mb-2">
+                    <img src="flourish_logo.png" alt="Logo" class="h-6 w-6 filter grayscale">
+                    <span class="font-display font-bold tracking-tight">FLOURISH OLAIYA</span>
                 </div>
-                
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#home" class="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors">Home</a></li>
-                        <li><a href="#about" class="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors">About</a></li>
-                        <li><a href="#skills" class="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors">Skills</a></li>
-                        <li><a href="#projects" class="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors">Projects</a></li>
-                        <li><a href="#contact" class="text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Specializations</h4>
-                    <ul class="space-y-2 text-gray-600 dark:text-gray-400">
-                        <li>Machine Learning</li>
-                        <li>Computer Vision</li>
-                        <li>Natural Language Processing</li>
-                        <li>Data Analytics</li>
-                        <li>Healthcare AI</li>
-                    </ul>
+                <p class="text-brand-gray text-xs mb-4">AI & Machine Learning Engineer</p>
+                <div class="flex gap-4">
+                    <a href="https://linkedin.com/in/flourisholaiya" target="_blank" class="nav-link text-xs">LinkedIn</a>
+                    <a href="https://github.com/flourish789" target="_blank" class="nav-link text-xs">GitHub</a>
+                    <a href="mailto:flourisholaiya6@gmail.com" class="nav-link text-xs">Gmail</a>
                 </div>
             </div>
             
-            <div class="border-t border-gray-200 dark:border-gray-700 mt-12 pt-8 text-center">
-                <p class="text-gray-600 dark:text-gray-400">
-                    © 2025 Flourish Olaiya. All rights reserved. Built with passion for AI and innovation.
-                </p>
+            <div class="text-brand-gray text-[10px] text-center md:text-right uppercase tracking-[0.2em]">
+                &copy; 2026 Designed for Innovation. All Rights Reserved.
             </div>
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script>
-        // Dark mode toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        const html = document.documentElement;
-        
-        // Check for saved user preference or use system preference
-        const savedTheme = localStorage.getItem('theme') || 
-                         (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        html.classList.add(savedTheme);
-        
-        // Update icon based on current theme
-        updateThemeIcon();
-        
-        themeToggle.addEventListener('click', () => {
-            html.classList.toggle('dark');
-            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
-            updateThemeIcon();
-        });
-        
-        function updateThemeIcon() {
-            const isDark = html.classList.contains('dark');
-            themeToggle.innerHTML = isDark 
-                ? '<i class="fas fa-sun text-yellow-300"></i>' 
-                : '<i class="fas fa-moon text-gray-700"></i>';
-        }
+        // Theme Toggle Logic
+        const body = document.body;
+        const themeBtn = document.getElementById('theme-toggle');
+        const sunIcon = document.getElementById('sun-icon');
+        const moonIcon = document.getElementById('moon-icon');
 
-        // CV Download functionality
-        document.getElementById('cv-button').addEventListener('click', function(e) {
-            e.preventDefault();
-            // Replace this URL with your actual Google Drive CV link
-            const cvUrl = 'https://drive.google.com/file/d/YOUR_CV_FILE_ID/view?usp=sharing';
-            
-            // Create a modal or prompt for the CV link
-            const userConfirmed = confirm('This will open your CV in a new tab. Continue?');
-            if (userConfirmed) {
-                window.open(cvUrl, '_blank');
-            }
+        themeBtn.addEventListener('click', () => {
+            body.classList.toggle('dark');
+            const isDark = body.classList.contains('dark');
+            sunIcon.classList.toggle('hidden', !isDark);
+            moonIcon.classList.toggle('hidden', isDark);
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            initParticles(); // Restart particles to match color
         });
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
+        // Mobile Menu Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('translate-x-full');
         });
 
-        // Typing animation for hero text
-        const typingText = document.querySelector('.typing-animation');
-        if (typingText) {
-            const text = 'Flourish';
-            let index = 0;
-            
-            function typeWriter() {
-                if (index < text.length) {
-                    typingText.textContent = text.substring(0, index + 1);
-                    index++;
-                    setTimeout(typeWriter, 150);
-                } else {
-                    setTimeout(() => {
-                        index = 0;
-                        typingText.textContent = '';
-                        typeWriter();
-                    }, 2000);
-                }
-            }
-            
-            typeWriter();
-        }
-
-        // Form submission
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const name = this.querySelector('input[placeholder="Your Name"]').value;
-            const email = this.querySelector('input[placeholder="Your Email"]').value;
-            const subject = this.querySelector('input[placeholder="Subject"]').value;
-            const message = this.querySelector('textarea').value;
-            
-            // Create mailto link
-            const mailtoLink = `mailto:flourisholaiya@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
-            
-            // Open email client
-            window.location.href = mailtoLink;
-            
-            // Show success message
-            alert('Email client opened! Your message is ready to send.');
-            
-            // Reset form
-            this.reset();
-        });
-
-        // Add scroll effect to navigation
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 100) {
-                nav.style.background = html.classList.contains('dark') ? 'rgba(17, 24, 39, 0.98)' : 'rgba(255, 255, 255, 0.98)';
-            } else {
-                nav.style.background = html.classList.contains('dark') ? 'rgba(17, 24, 39, 0.95)' : 'rgba(255, 255, 255, 0.95)';
-            }
-        });
-
-        // Mobile menu toggle
-        const mobileMenuButton = document.querySelector('.md\\:hidden button');
-        const mobileMenu = document.createElement('div');
-        mobileMenu.className = 'md:hidden bg-white dark:bg-gray-900 shadow-lg absolute top-full left-0 right-0 hidden border-t border-gray-200 dark:border-gray-700';
-        mobileMenu.innerHTML = `
-            <div class="px-4 py-2 space-y-2">
-                <a href="#home" class="block py-2 text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white">Home</a>
-                <a href="#about" class="block py-2 text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white">About</a>
-                <a href="#skills" class="block py-2 text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white">Skills</a>
-                <a href="#projects" class="block py-2 text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white">Projects</a>
-                <a href="#contact" class="block py-2 text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white">Contact</a>
-            </div>
-        `;
-        
-        document.querySelector('nav > div').appendChild(mobileMenu);
-        
-        mobileMenuButton.addEventListener('click', function() {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Close mobile menu when clicking on links
-        mobileMenu.addEventListener('click', function(e) {
-            if (e.target.tagName === 'A') {
-                mobileMenu.classList.add('hidden');
-            }
-        });
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+        const closeMenu = () => {
+            mobileMenu.classList.add('translate-x-full');
         };
 
+        closeMenuBtn.addEventListener('click', closeMenu);
+        mobileNavLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+        // Sticky Navbar
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-white/80', 'dark:bg-black/80', 'backdrop-blur-lg', 'py-4', 'shadow-lg');
+                nav.classList.remove('py-6');
+            } else {
+                nav.classList.remove('bg-white/80', 'dark:bg-black/80', 'backdrop-blur-lg', 'py-4', 'shadow-lg');
+                nav.classList.add('py-6');
+            }
+        });
+
+        // Particle System
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        
+        function initParticles() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            particles = [];
+            const isDark = body.classList.contains('dark');
+            const particleCount = 60;
+            const color = isDark ? 'rgba(255,255,255,' : 'rgba(0,0,0,';
+
+            for(let i=0; i<particleCount; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 2 + 0.5,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    alpha: Math.random() * 0.4 + 0.1,
+                    color: color
+                });
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            particles.forEach((p, index) => {
+                p.x += p.vx;
+                p.y += p.vy;
+                
+                if(p.x < 0) p.x = canvas.width;
+                if(p.x > canvas.width) p.x = 0;
+                if(p.y < 0) p.y = canvas.height;
+                if(p.y > canvas.height) p.y = 0;
+                
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = p.color + p.alpha + ')';
+                ctx.fill();
+
+                // Draw lines between nearby particles
+                for(let j=index+1; j<particles.length; j++) {
+                    const p2 = particles[j];
+                    const dx = p.x - p2.x;
+                    const dy = p.y - p2.y;
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    if(dist < 150) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = p.color + (0.15 * (1 - dist/150)) + ')';
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                }
+            });
+            requestAnimationFrame(animateParticles);
+        }
+
+        window.addEventListener('resize', initParticles);
+        initParticles();
+        animateParticles();
+
+        // Reveal animations on scroll
+        const revealElements = document.querySelectorAll('.reveal');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('active');
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
-        // Observe all cards and sections
-        document.querySelectorAll('.card-hover, section').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
-        });
+        revealElements.forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
