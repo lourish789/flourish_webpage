@@ -1,622 +1,612 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flourish Olaiya | Senior AI & Machine Learning Engineer</title>
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Portfolio of Flourish Olaiya, a Senior AI Engineer specializing in LLMs, RAG, and Agentic Systems. 5+ years of experience and 20+ production-grade projects.">
-    <!-- Fonts - Inter for clean, professional look -->
+    <title>Flourish Olaiya | Data Analysis, Data Science, ML/AI Engineering</title>
+    <meta name="description" content="Flourish Olaiya portfolio focused on data analysis, data science, and ML/AI engineering projects with confirmed GitHub repositories.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            light: '#ffffff',
-                            dark: '#0a0a0a', /* Darker background for contrast */
-                            gray: '#6b7280',
-                            silver: '#e5e7eb',
-                            charcoal: '#1a1a1a' /* Darker cards for contrast */
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Outfit', 'sans-serif'],
-                    },
-                    animation: {
-                        'fade-in': 'fadeIn 1s ease-out forwards',
-                        'slide-up': 'slideUp 0.8s ease-out forwards',
-                        'float': 'float 6s ease-in-out infinite',
-                    },
-                    keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
-                        },
-                        slideUp: {
-                            '0%': { transform: 'translateY(30px)', opacity: '0' },
-                            '100%': { transform: 'translateY(0)', opacity: '1' },
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-15px)' },
-                        }
-                    }
-                }
-            }
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f6f6f4;
+            --surface: #ffffff;
+            --surface-strong: #efefec;
+            --ink: #121212;
+            --muted: #4f4f4f;
+            --line: rgba(0, 0, 0, 0.16);
+            --pixel: rgba(0, 0, 0, 0.06);
+            --accent: #000000;
+            --shadow: 0 20px 40px rgba(0, 0, 0, 0.09);
         }
-    </script>
-    <style type="text/tailwindcss">
-        /* Custom Grayscale Styles */
+
+        body.dark {
+            --bg: #0a0a0a;
+            --surface: #121212;
+            --surface-strong: #1b1b1b;
+            --ink: #f2f2f2;
+            --muted: #bdbdbd;
+            --line: rgba(255, 255, 255, 0.16);
+            --pixel: rgba(255, 255, 255, 0.08);
+            --accent: #ffffff;
+            --shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            @apply selection:bg-brand-gray selection:text-white bg-[#fcfcfc] dark:bg-brand-dark text-black dark:text-[#f3f4f6] transition-colors duration-500 overflow-x-hidden;
-            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: "Space Grotesk", sans-serif;
+            transition: background-color 300ms ease, color 300ms ease;
+            overflow-x: hidden;
+            line-height: 1.5;
         }
 
-        .glass-card {
-            @apply bg-white dark:bg-brand-charcoal border border-black/5 dark:border-white/5 rounded-2xl transition-all duration-300;
-        }
-
-        .glass-card:hover {
-            @apply border-black/20 dark:border-white/20 transform -translate-y-1 shadow-2xl shadow-black/5 dark:shadow-white/5;
-        }
-
-        .nav-link {
-            @apply text-brand-gray hover:text-black dark:hover:text-white transition-all duration-300 relative py-1 text-sm font-medium;
-        }
-
-        .nav-link::after {
-            content: '';
-            @apply absolute bottom-0 left-0 w-0 h-0.5 bg-black dark:bg-white transition-all duration-300;
-        }
-
-        .nav-link:hover::after {
-            @apply w-full;
-        }
-
-        /* Particles Layer */
-        #particles-canvas {
+        #pixel-grid {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
+            inset: 0;
+            z-index: -2;
+            background-image: linear-gradient(var(--pixel) 1px, transparent 1px), linear-gradient(90deg, var(--pixel) 1px, transparent 1px);
+            background-size: 28px 28px;
             pointer-events: none;
         }
 
-        /* Grayscale Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { @apply bg-transparent; }
-        ::-webkit-scrollbar-thumb { @apply bg-brand-gray/20 dark:bg-brand-gray/10 rounded-full hover:bg-brand-gray/40 transition-colors; }
+        #noise-layer {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.28;
+            background: radial-gradient(circle at 15% 15%, rgba(0, 0, 0, 0.08), transparent 38%), radial-gradient(circle at 80% 20%, rgba(0, 0, 0, 0.08), transparent 42%), radial-gradient(circle at 50% 80%, rgba(0, 0, 0, 0.1), transparent 45%);
+        }
 
-        /* Smooth reveal animations */
+        body.dark #noise-layer {
+            background: radial-gradient(circle at 15% 15%, rgba(255, 255, 255, 0.08), transparent 38%), radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.08), transparent 42%), radial-gradient(circle at 50% 80%, rgba(255, 255, 255, 0.08), transparent 45%);
+        }
+
+        #game-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.42;
+        }
+
+        .wrapper {
+            width: min(1120px, 92vw);
+            margin: 0 auto;
+        }
+
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            backdrop-filter: blur(8px);
+            background: color-mix(in srgb, var(--bg) 88%, transparent);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.9rem 0;
+        }
+
+        .brand {
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .links a,
+        .btn,
+        .project-link {
+            border: 1px solid var(--line);
+            background: var(--surface);
+            padding: 0.45rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            transition: transform 200ms ease, background-color 200ms ease, border-color 200ms ease;
+        }
+
+        .links a:hover,
+        .btn:hover,
+        .project-link:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+            background: var(--surface-strong);
+        }
+
+        .hero {
+            padding: 4.5rem 0 2.5rem;
+        }
+
+        .kicker {
+            font-family: "IBM Plex Mono", monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--muted);
+            font-size: 0.72rem;
+        }
+
+        h1 {
+            font-size: clamp(2.1rem, 6vw, 4.8rem);
+            line-height: 0.98;
+            margin: 0.8rem 0 1.2rem;
+        }
+
+        .lead {
+            max-width: 800px;
+            color: var(--muted);
+            font-size: clamp(1rem, 2vw, 1.2rem);
+        }
+
+        .hero-cta {
+            margin-top: 1.6rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
+
+        .metrics {
+            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.8rem;
+        }
+
+        .metric {
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 1rem;
+            background: var(--surface);
+            box-shadow: var(--shadow);
+        }
+
+        .metric strong {
+            display: block;
+            font-size: 1.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        section {
+            padding: 2.5rem 0;
+        }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            margin: 0;
+            font-size: clamp(1.35rem, 3vw, 2rem);
+        }
+
+        .muted {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .experience-grid,
+        .focus-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .card {
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 1rem;
+            background: var(--surface);
+            box-shadow: var(--shadow);
+            transition: transform 240ms ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+        }
+
+        .card h3 {
+            margin: 0 0 0.65rem;
+            font-size: 1.08rem;
+        }
+
+        .project-jumps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .project-card {
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 1rem;
+            background: var(--surface);
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .project-card h3 {
+            margin: 0;
+            font-size: 1.08rem;
+            line-height: 1.25;
+        }
+
+        .project-meta {
+            margin: 0.3rem 0 0.8rem;
+            color: var(--muted);
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 0.73rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .project-actions {
+            margin-top: 0.95rem;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .project-link {
+            display: inline-block;
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 0.73rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .footer {
+            border-top: 1px solid var(--line);
+            margin-top: 2.5rem;
+            padding: 1.3rem 0 2.2rem;
+            color: var(--muted);
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+            font-size: 0.85rem;
+        }
+
         .reveal {
             opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease-out;
+            transform: translateY(18px);
+            transition: opacity 550ms ease, transform 550ms ease;
         }
 
-        .reveal.active {
+        .reveal.show {
             opacity: 1;
-            transform: translateY(0);
+            transform: none;
         }
 
-        /* Grayscale Gradient Text */
-        .gradient-text {
-            @apply bg-clip-text text-transparent bg-gradient-to-r from-black to-brand-gray dark:from-white dark:to-brand-gray font-bold;
-        }
+        @media (max-width: 900px) {
+            .experience-grid,
+            .focus-grid,
+            .project-grid,
+            .metrics {
+                grid-template-columns: 1fr;
+            }
 
-        /* Project description clamping */
-        .project-desc {
-            @apply transition-all duration-500 overflow-hidden line-clamp-3 text-sm;
-        }
-        .project-desc.expanded {
-            @apply line-clamp-none;
+            .links {
+                display: none;
+            }
         }
     </style>
 </head>
-<body class="dark">
-    <!-- Particle Background -->
-    <canvas id="particles-canvas"></canvas>
+<body>
+    <div id="pixel-grid" aria-hidden="true"></div>
+    <canvas id="game-canvas" aria-hidden="true"></canvas>
+    <div id="noise-layer" aria-hidden="true"></div>
 
-    <!-- Navigation -->
-    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 py-6">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12 flex justify-between items-center bg-white/70 dark:bg-brand-dark/70 backdrop-blur-xl rounded-full border border-black/5 dark:border-white/5 py-3 px-6 mt-4 sm:mx-4 lg:mx-auto">
-            <a href="#" class="flex items-center gap-3 group">
-                <img src="flourish_logo.png" alt="FO Logo" class="h-8 w-8 filter grayscale brightness-110 group-hover:rotate-12 transition-all duration-500">
-                <span class="text-lg font-display font-bold tracking-tight hidden sm:block">FLOURISH OLAIYA</span>
-            </a>
-
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex items-center gap-8">
-                <a href="#about" class="nav-link">About</a>
-                <a href="#career" class="nav-link">Experience</a>
-                <a href="#skills" class="nav-link">Capabilities</a>
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="#contact" class="nav-link">Contact</a>
-                <button id="theme-toggle" class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors" aria-label="Toggle Theme">
-                    <svg id="sun-icon" class="hidden w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                    <svg id="moon-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-                </button>
+    <nav class="nav">
+        <div class="wrapper nav-inner">
+            <a class="brand" href="#top">Flourish Olaiya</a>
+            <div class="links">
+                <a href="#about">About</a>
+                <a href="#experience">Experience</a>
+                <a href="#focus">Focus</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+                <button id="theme-toggle" class="btn" type="button">Toggle Theme</button>
             </div>
-
-            <!-- Mobile Menu Toggle -->
-            <button class="md:hidden p-2" id="mobile-menu-btn" aria-label="Toggle Mobile Menu">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-            </button>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="fixed inset-0 bg-white dark:bg-brand-dark transform translate-x-full transition-transform duration-500 z-[60] flex flex-col items-center justify-center gap-8 md:hidden">
-            <button id="close-menu-btn" class="absolute top-8 right-8 p-3" aria-label="Close Mobile Menu">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-            <a href="#about" class="text-3xl font-display font-medium mobile-nav-link">About</a>
-            <a href="#career" class="text-3xl font-display font-medium mobile-nav-link">Experience</a>
-            <a href="#skills" class="text-3xl font-display font-medium mobile-nav-link">Capabilities</a>
-            <a href="#projects" class="text-3xl font-display font-medium mobile-nav-link">Projects</a>
-            <a href="#contact" class="text-3xl font-display font-medium mobile-nav-link">Contact</a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header id="home" class="min-h-screen flex flex-col justify-center items-center relative px-6 text-center pt-32">
-        <div class="animate-fade-in space-y-8 max-w-5xl">
-            <!-- Profile Image Area -->
-            <div class="relative inline-block mb-6">
-                <div class="w-44 h-44 md:w-52 md:h-52 rounded-full overflow-hidden border-4 border-white dark:border-brand-charcoal grayscale hover:grayscale-0 transition-all duration-700 shadow-2xl relative z-10">
-                    <img src="EmptyName 157.jpg" alt="Flourish Olaiya Profile" class="w-full h-full object-cover">
-                </div>
-                <div class="absolute inset-0 -m-4 border border-brand-gray/20 rounded-full animate-pulse"></div>
+    <main id="top" class="wrapper">
+        <header class="hero reveal">
+            <p class="kicker">Data Analysis | Data Science | ML/AI Engineering</p>
+            <h1>Engineering practical intelligence from data to deployed systems.</h1>
+            <p class="lead">
+                I design end-to-end workflows that start from messy datasets, evolve into robust machine learning experiments, and ship as useful AI products.
+                My work spans analysis dashboards, modeling pipelines, and production-facing ML systems.
+            </p>
+            <div class="hero-cta">
+                <a class="btn" href="#projects">Browse Confirmed Projects</a>
+                <a class="btn" target="_blank" rel="noopener noreferrer" href="https://github.com/lourish789">GitHub Profile</a>
+            </div>
+            <div class="metrics">
+                <article class="metric">
+                    <strong>5+</strong>
+                    <span class="muted">Years building with data and ML</span>
+                </article>
+                <article class="metric">
+                    <strong>3 Lanes</strong>
+                    <span class="muted">Analysis, science, and AI engineering</span>
+                </article>
+                <article class="metric">
+                    <strong>100%</strong>
+                    <span class="muted">Projects below are confirmed GitHub repos</span>
+                </article>
+            </div>
+        </header>
+
+        <section id="about" class="reveal">
+            <div class="section-head">
+                <h2>About</h2>
+            </div>
+            <p class="muted">
+                My approach is simple: explore the data deeply, model with discipline, and deploy with reliability in mind.
+                I focus on measurable outcomes, reproducible experiments, and tools teams can actually maintain.
+            </p>
+        </section>
+
+        <section id="experience" class="reveal">
+            <div class="section-head">
+                <h2>Experience Snapshot</h2>
+            </div>
+            <div class="experience-grid">
+                <article class="card">
+                    <h3>AI/ML Engineering</h3>
+                    <p class="muted">Designing model-backed product features, automation workflows, and inference-ready pipelines.</p>
+                </article>
+                <article class="card">
+                    <h3>Data Science Delivery</h3>
+                    <p class="muted">Building and evaluating predictive models, feature pipelines, and practical experimentation loops.</p>
+                </article>
+                <article class="card">
+                    <h3>Data Analysis Practice</h3>
+                    <p class="muted">Converting raw records into interpretable dashboards and decision-support narratives.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="focus" class="reveal">
+            <div class="section-head">
+                <h2>Core Focus</h2>
+            </div>
+            <div class="focus-grid">
+                <article class="card">
+                    <h3>Analysis to Insight</h3>
+                    <p class="muted">Exploratory analysis, data cleaning, trend breakdowns, and business-facing interpretation.</p>
+                </article>
+                <article class="card">
+                    <h3>Modeling and Validation</h3>
+                    <p class="muted">Feature engineering, algorithm comparisons, metrics-based tuning, and explainable outputs.</p>
+                </article>
+                <article class="card">
+                    <h3>Applied AI Systems</h3>
+                    <p class="muted">Practical ML integrations and lightweight productized tooling with maintainable architecture.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="projects" class="reveal">
+            <div class="section-head">
+                <h2>Selected Confirmed Repositories</h2>
+                <p class="muted">Only public repositories found under `github.com/lourish789`.</p>
             </div>
 
-            <div class="animate-slide-up">
-                <h2 class="text-brand-gray font-display font-medium tracking-widest text-xs uppercase mb-3">5+ Years of Engineering Excellence</h2>
-                <h1 class="text-5xl md:text-7xl lg:text-8xl font-display font-black tracking-tighter mb-6 leading-[0.9]">
-                    FLOURISH <br><span class="gradient-text">OLAIYA</span>
-                </h1>
-                <p class="text-lg md:text-xl text-brand-gray max-w-2xl mx-auto leading-relaxed font-normal">
-                    Senior AI & Machine Learning Engineer specializing in building scalable agentic systems, production RAG pipelines, and intelligent microservices.
-                </p>
+            <div class="project-jumps" aria-label="Project anchor links">
+                <a class="project-link" href="#project-rag">RAG System Berlin</a>
+                <a class="project-link" href="#project-breast-cancer">Breast Cancer Prediction</a>
+                <a class="project-link" href="#project-cassava">Cassava Disease Classification</a>
+                <a class="project-link" href="#project-lung-cancer">Lung Cancer Image Classification</a>
+                <a class="project-link" href="#project-book-genre">Book Genre Prediction</a>
+                <a class="project-link" href="#project-class-mgmt">Class Management Bot</a>
             </div>
 
-            <div class="flex flex-col sm:flex-row gap-5 justify-center items-center mt-10">
-                <a href="#projects" class="px-10 py-4 bg-black dark:bg-white text-white dark:text-black rounded-full font-bold hover:bg-brand-gray dark:hover:bg-brand-silver transition-all w-full sm:w-auto">
-                    View Portfolio
-                </a>
-                <a href="https://drive.google.com/file/d/1T4dXM1BILLVhKVTUPI1lo29hyGEWEAXm/view?usp=sharing" target="_blank" class="px-10 py-4 border-2 border-black/10 dark:border-white/10 rounded-full font-bold hover:bg-black/5 dark:hover:bg-white/5 transition-all w-full sm:w-auto flex items-center justify-center gap-2">
-                    Download CV
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path></svg>
-                </a>
-            </div>
-        </div>
-        
-        <!-- Minimalist Scroll indicator -->
-        <div class="absolute bottom-12 text-brand-gray text-[10px] font-bold tracking-[0.3em] uppercase flex flex-col items-center gap-4">
-            <span class="[writing-mode:vertical-lr]">Scroll</span>
-            <div class="w-[1px] h-12 bg-gradient-to-b from-brand-gray to-transparent"></div>
-        </div>
-    </header>
-
-    <!-- About Section -->
-    <section id="about" class="py-32 px-6 lg:px-12">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-            <div class="reveal">
-                <h4 class="text-brand-gray font-bold tracking-widest text-[10px] uppercase mb-4">The Professional</h4>
-                <h2 class="text-4xl md:text-6xl font-display font-black mb-8 leading-tight">Advancing AI <br><span class="gradient-text">with Purpose.</span></h2>
-                <div class="space-y-6 text-brand-gray dark:text-brand-gray/90 leading-relaxed text-lg font-normal">
-                    <p>
-                        I bridge the gap between complex research and production-grade engineering. My focus is on creating AI that doesn't just work in a lab, but thrives in mission-critical environments across healthcare, education, and finance.
-                    </p>
-                    <p>
-                        Specializing in Large Language Models (LLMs) and Agentic Workflow Orchestration, I build systems that are traceable, reliable, and deeply integrated into existing software architectures.
-                    </p>
-                    <div class="grid grid-cols-3 gap-6 pt-10 border-t border-black/5 dark:border-white/5">
-                        <div>
-                            <div class="text-3xl font-black mb-1">5+</div>
-                            <div class="text-[9px] text-brand-gray uppercase tracking-widest font-bold">Years Experience</div>
-                        </div>
-                        <div>
-                            <div class="text-3xl font-black mb-1">20+</div>
-                            <div class="text-[9px] text-brand-gray uppercase tracking-widest font-bold">Live Projects</div>
-                        </div>
-                        <div>
-                            <div class="text-3xl font-black mb-1">10k+</div>
-                            <div class="text-[9px] text-brand-gray uppercase tracking-widest font-bold">Users Served</div>
-                        </div>
+            <div class="project-grid">
+                <article id="project-rag" class="project-card">
+                    <h3>RAG System Berlin</h3>
+                    <p class="project-meta">Python | AI Engineering</p>
+                    <p class="muted">Production-grade Retrieval-Augmented Generation system for intelligent information retrieval and synthesis.</p>
+                    <div class="project-actions">
+                        <a class="project-link" target="_blank" rel="noopener noreferrer" href="https://github.com/lourish789/RAG_system_berlin">Repository</a>
+                        <a class="project-link" href="#project-rag">Anchor</a>
                     </div>
-                </div>
-            </div>
-            
-            <div class="reveal">
-                <div class="rounded-3xl overflow-hidden glass-card p-2 grayscale group hover:grayscale-0 transition-all duration-1000">
-                    <img src="Screenshot_20251122-000553 (1).png" alt="Engineering Session" class="w-full h-full object-cover rounded-2xl">
-                </div>
-            </div>
-        </div>
-    </section>
+                </article>
 
-    <!-- Career Timeline -->
-    <section id="career" class="py-32 px-6 lg:px-12">
-        <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-24 reveal">
-                <h2 class="text-4xl md:text-5xl font-display font-black mb-6 italic tracking-tight">Career Journey</h2>
-                <div class="h-1 w-20 bg-black dark:bg-white mx-auto"></div>
-            </div>
-
-            <div class="space-y-16 relative">
-                <!-- Vertical Line -->
-                <div class="absolute left-0 sm:left-1/2 top-0 bottom-0 w-[1px] bg-brand-silver dark:bg-brand-charcoal transform -translate-x-1/2 hidden sm:block"></div>
-
-                <!-- Zkyte Technologies -->
-                <div class="reveal flex flex-col sm:flex-row-reverse items-center justify-between sm:gap-16 relative">
-                    <div class="sm:w-1/2 text-left bg-white dark:bg-brand-charcoal p-8 rounded-3xl border border-black/5 dark:border-white/5">
-                        <div class="text-[10px] font-bold text-brand-gray mb-2 uppercase">Jan 2026 — Present</div>
-                        <h3 class="text-2xl font-black mb-1">AI/ML Engineer</h3>
-                        <div class="text-sm font-bold text-brand-gray mb-6 uppercase tracking-widest">Zkyte Technologies</div>
-                        <ul class="text-sm text-brand-gray space-y-3 list-disc pl-4">
-                            <li>Implementing Large Action Models (LAMs) and integrating AI APIs into core products.</li>
-                            <li>Architecting NLP and Computer Vision solutions for real-time image annotation.</li>
-                            <li>Developing advanced recommendation engines and predictive analytics subsystems.</li>
-                        </ul>
+                <article id="project-breast-cancer" class="project-card">
+                    <h3>Breast Cancer Prediction</h3>
+                    <p class="project-meta">ML Engineering | Medical AI</p>
+                    <p class="muted">Predictive model for breast cancer diagnosis using clinical and imaging data with explainability focus.</p>
+                    <div class="project-actions">
+                        <a class="project-link" target="_blank" rel="noopener noreferrer" href="https://github.com/lourish789/Breast_Cancer_Prediction">Repository</a>
+                        <a class="project-link" href="#project-breast-cancer">Anchor</a>
                     </div>
-                    <div class="hidden sm:block absolute left-1/2 w-3 h-3 rounded-full bg-black dark:bg-white transform -translate-x-1/2 z-10"></div>
-                    <div class="sm:w-1/2"></div>
-                </div>
+                </article>
 
-                <!-- Schoolinka -->
-                <div class="reveal flex flex-col sm:flex-row items-center justify-between sm:gap-16 relative">
-                    <div class="sm:w-1/2 text-left sm:text-right bg-white dark:bg-brand-charcoal p-8 rounded-3xl border border-black/5 dark:border-white/5">
-                        <div class="text-[10px] font-bold text-brand-gray mb-2 uppercase italic">June 2025 — Dec 2025</div>
-                        <h3 class="text-2xl font-black mb-1">AI Engineer</h3>
-                        <div class="text-sm font-bold text-brand-gray mb-6 uppercase tracking-widest">Schoolinka</div>
-                        <p class="text-sm text-brand-gray leading-relaxed font-normal">
-                            Built a production RAG system for educational coaching, integrating multi-agent LLM workflows with WhatsApp for personalized student support.
-                        </p>
+                <article id="project-cassava" class="project-card">
+                    <h3>Cassava Disease Classification</h3>
+                    <p class="project-meta">Jupyter Notebook | Computer Vision</p>
+                    <p class="muted">Deep learning model for agricultural disease detection in cassava plants using image classification.</p>
+                    <div class="project-actions">
+                        <a class="project-link" target="_blank" rel="noopener noreferrer" href="https://github.com/lourish789/Cassava_Disease_classification">Repository</a>
+                        <a class="project-link" href="#project-cassava">Anchor</a>
                     </div>
-                    <div class="hidden sm:block absolute left-1/2 w-3 h-3 rounded-full bg-black dark:bg-white transform -translate-x-1/2 z-10"></div>
-                    <div class="sm:w-1/2"></div>
-                </div>
+                </article>
 
-                <!-- DSN FUNAAB -->
-                <div class="reveal flex flex-col sm:flex-row-reverse items-center justify-between sm:gap-16 relative">
-                    <div class="sm:w-1/2 text-left bg-white dark:bg-brand-charcoal p-8 rounded-3xl border border-black/5 dark:border-white/5">
-                        <div class="text-[10px] font-bold text-brand-gray mb-2 uppercase">Feb 2025 — Present</div>
-                        <h3 class="text-2xl font-black mb-1">Data Science Lead</h3>
-                        <div class="text-sm font-bold text-brand-gray mb-6 uppercase tracking-widest italic">DSN FUNAAB (Volunteer)</div>
-                        <p class="text-sm text-brand-gray leading-relaxed font-normal">
-                            Leading a community of 200+ aspiring engineers. Orchestrating workshops on ML deployment and predictive analytics architecture.
-                        </p>
+                <article id="project-lung-cancer" class="project-card">
+                    <h3>Lung Cancer Image Classification</h3>
+                    <p class="project-meta">Jupyter Notebook | Medical Imaging</p>
+                    <p class="muted">CNN-based image classification for lung cancer detection from radiological scans with data augmentation.</p>
+                    <div class="project-actions">
+                        <a class="project-link" target="_blank" rel="noopener noreferrer" href="https://github.com/lourish789/Lung_Cancer_Image_Classification">Repository</a>
+                        <a class="project-link" href="#project-lung-cancer">Anchor</a>
                     </div>
-                    <div class="hidden sm:block absolute left-1/2 w-3 h-3 rounded-full bg-black dark:bg-white transform -translate-x-1/2 z-10"></div>
-                    <div class="sm:w-1/2"></div>
-                </div>
-            </div>
-            
-            <!-- Academic Footer -->
-            <div class="mt-24 text-center reveal">
-                <p class="text-[10px] font-black uppercase tracking-[0.4em] mb-4 text-brand-gray">Education</p>
-                <h3 class="text-lg font-bold">B.Eng Agricultural & Bio-Resources Engineering</h3>
-                <p class="text-sm text-brand-gray underline underline-offset-4">Federal University of Agriculture, Abeokuta</p>
-            </div>
-        </div>
-    </section>
+                </article>
 
-    <!-- Capabilities Section (Enhanced) -->
-    <section id="skills" class="py-32 px-6 lg:px-12 bg-black/5 dark:bg-white/5">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-24 reveal">
-                <h2 class="text-4xl md:text-5xl font-display font-black mb-4">Core Capabilities</h2>
-                <p class="text-brand-gray max-w-xl mx-auto">Merging AI research with engineering discipline to build production-ready systems.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Group 1 -->
-                <div class="p-8 bg-white dark:bg-brand-charcoal rounded-3xl border border-black/5 dark:border-white/5 reveal">
-                    <h3 class="text-lg font-black mb-6 border-b pb-4">Agentic AI</h3>
-                    <p class="text-xs text-brand-gray leading-loose">Applying Large Language Models (LLMs) to automate multi-step reasoning workflows. I focus on tool-calling, long-term memory, and agentic error-correction loops.</p>
-                </div>
-                <!-- Group 2 -->
-                <div class="p-8 bg-white dark:bg-brand-charcoal rounded-3xl border border-black/5 dark:border-white/5 reveal" style="transition-delay: 0.1s">
-                    <h3 class="text-lg font-black mb-6 border-b pb-4">Vision & Signal</h3>
-                    <p class="text-xs text-brand-gray leading-loose">Developing CNN architectures for medical and agricultural diagnostics. Expertise in image annotation, object detection, and signal processing for real-time analysis.</p>
-                </div>
-                <!-- Group 3 -->
-                <div class="p-8 bg-white dark:bg-brand-charcoal rounded-3xl border border-black/5 dark:border-white/5 reveal" style="transition-delay: 0.2s">
-                    <h3 class="text-lg font-black mb-6 border-b pb-4">MLOps</h3>
-                    <p class="text-xs text-brand-gray leading-loose">Deploying models as scalable FastAPI microservices. Managing containerization (Docker), CI/CD pipelines, and vector databases (Pinecone/ChromaDB).</p>
-                </div>
-                <!-- Group 4 -->
-                <div class="p-8 bg-white dark:bg-brand-charcoal rounded-3xl border border-black/5 dark:border-white/5 reveal" style="transition-delay: 0.3s">
-                    <h3 class="text-lg font-black mb-6 border-b pb-4">Ethics & Safety</h3>
-                    <p class="text-xs text-brand-gray leading-loose">Implementing rigorous evaluation frameworks to mitigate hallucination, ensure data privacy, and maintain explainability in black-box AI models.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Detailed Projects Section (Expanded to 20+) -->
-    <section id="projects" class="py-32 px-6 lg:px-12 bg-white dark:bg-brand-dark">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-24 gap-8 reveal">
-                <div class="max-w-2xl">
-                    <h2 class="text-5xl md:text-7xl font-display font-black tracking-tighter mb-6">Selected <br><span class="gradient-text">Portfolio.</span></h2>
-                    <p class="text-brand-gray font-normal text-lg">A selection of 20+ production-grade projects ranging from surgical image analysis to agentic customer support.</p>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
-                <!-- Projects will be injected or listed here -->
-                <!-- Example Project 1 -->
-                <div class="p-8 bg-black/5 dark:bg-white/5 rounded-3xl transition-all border border-transparent hover:border-black/10 dark:hover:border-white/10 reveal flex flex-col justify-between h-full">
-                    <div>
-                        <div class="flex justify-between items-start mb-6">
-                            <h3 class="text-xl font-bold truncate pr-4">AI Coaching Assistant</h3>
-                            <a href="https://github.com/flourish789/ai-coaching" target="_blank" class="text-brand-gray hover:text-black dark:hover:text-white transition-colors">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                            </a>
-                        </div>
-                        <p class="project-desc text-brand-gray mb-4">
-                            Production-grade RAG system for educational institutions. It leverages LangChain for orchestration and integrates seamlessly with WhatsApp for 24/7 personalized coaching. 
-                            Built with high-performance vector retrieval to ensure sub-second response times.
-                        </p>
+                <article id="project-book-genre" class="project-card">
+                    <h3>Book Genre Prediction</h3>
+                    <p class="project-meta">Jupyter Notebook | NLP</p>
+                    <p class="muted">Multiclass classification system predicting book genres from PDF content with feature extraction and analysis.</p>
+                    <div class="project-actions">
+                        <a class="project-link" target="_blank" rel="noopener noreferrer" href="https://github.com/lourish789/Book_Genre_Prediction">Repository</a>
+                        <a class="project-link" href="#project-book-genre">Anchor</a>
                     </div>
-                    <button class="read-more-btn text-[10px] font-bold uppercase tracking-widest text-brand-gray hover:text-black dark:hover:text-white mb-6 text-left">Read More</button>
-                    <div class="flex gap-2 flex-wrap mt-auto">
-                        <span class="text-[9px] px-2 py-1 bg-black/5 dark:bg-white/5 rounded uppercase font-bold">RAG</span>
-                        <span class="text-[9px] px-2 py-1 bg-black/5 dark:bg-white/5 rounded uppercase font-bold">Pinecone</span>
+                </article>
+
+                <article id="project-class-mgmt" class="project-card">
+                    <h3>Class Management Bot</h3>
+                    <p class="project-meta">Python | Automation</p>
+                    <p class="muted">Intelligent bot system for classroom management and student engagement automation with data tracking.</p>
+                    <div class="project-actions">
+                        <a class="project-link" target="_blank" rel="noopener noreferrer" href="https://github.com/lourish789/Class_Management_bot">Repository</a>
+                        <a class="project-link" href="#project-class-mgmt">Anchor</a>
                     </div>
-                </div>
-
-                <!-- More projects follow similar pattern -->
-                <!-- Project 2: Zkyte LAM -->
-                <div class="p-8 bg-black/5 dark:bg-white/5 rounded-3xl reveal flex flex-col justify-between h-full">
-                    <div>
-                        <h3 class="text-xl font-bold mb-6">Zkyte LAM Engine</h3>
-                        <p class="project-desc text-brand-gray mb-4">
-                            Implementing Large Action Models (LAMs) at Zkyte Technologies. The project involves building autonomous agents that can navigate complex web interfaces and internal APIs to complete tasks without human supervision.
-                        </p>
-                    </div>
-                    <button class="read-more-btn text-[10px] font-bold uppercase tracking-widest text-brand-gray text-left mb-6">Read More</button>
-                    <div class="flex gap-2 mt-auto"><span class="text-[9px] px-2 py-1 bg-black/5 rounded font-bold uppercase">LAM</span><span class="text-[9px] px-2 py-1 bg-black/5 rounded font-bold uppercase">Automation</span></div>
-                </div>
-
-                <!-- Project 3: Breast Cancer -->
-                <div class="p-8 bg-black/5 dark:bg-white/5 rounded-3xl reveal flex flex-col justify-between h-full">
-                    <div>
-                        <h3 class="text-xl font-bold mb-6">Cancer Detection XAI</h3>
-                        <p class="project-desc text-brand-gray mb-4">
-                            Medical vision system that classifies breast cancer in MRI scans with integrated Explainable AI (SHAP) to help radiologists understand model decisions. Deployed as a secure HIPAA-compliant microservice.
-                        </p>
-                    </div>
-                    <button class="read-more-btn text-[10px] font-bold uppercase tracking-widest text-brand-gray text-left mb-6">Read More</button>
-                    <div class="flex gap-2 mt-auto"><span class="text-[9px] px-2 py-1 bg-black/5 rounded font-bold uppercase">Computer Vision</span><span class="text-[9px] px-2 py-1 bg-black/5 rounded font-bold uppercase">Healthcare</span></div>
-                </div>
-
-                <!-- Project 4: Mental Health -->
-                <div class="p-8 bg-black/5 dark:bg-white/5 rounded-3xl reveal flex flex-col justify-between h-full">
-                    <div>
-                        <h3 class="text-xl font-bold mb-6">EEG Emotion Monitor</h3>
-                        <p class="project-desc text-brand-gray mb-4">
-                            Connecting hardware sensors with deep learning to detect emotional states in real-time. This project uses CNN-LSTMs to process time-series signal data from EEG headsets.
-                        </p>
-                    </div>
-                    <button class="read-more-btn text-[10px] font-bold uppercase tracking-widest text-brand-gray text-left mb-6">Read More</button>
-                    <div class="flex gap-2 mt-auto"><span class="text-[9px] px-2 py-1 bg-black/5 rounded font-bold uppercase">Bio-Tech</span></div>
-                </div>
-
-                <!-- Project 5: Cassava Disease -->
-                <div class="p-8 bg-black/5 dark:bg-white/5 rounded-3xl reveal flex flex-col justify-between h-full">
-                    <div>
-                        <h3 class="text-xl font-bold mb-6">Agri-Vision Field Hub</h3>
-                        <p class="project-desc text-brand-gray mb-4">
-                            Deploying optimized models on mobile devices to detect agricultural diseases in remote areas with poor connectivity. Built during my internship at Momentum AI.
-                        </p>
-                    </div>
-                    <button class="read-more-btn text-[10px] font-bold uppercase tracking-widest text-brand-gray text-left mb-6">Read More</button>
-                    <div class="flex gap-2 mt-auto"><span class="text-[9px] px-2 py-1 bg-black/5 rounded font-bold uppercase">TFLite</span></div>
-                </div>
-                
-                <!-- 15+ more placeholder/generated projects would go here -->
-                <!-- Adding a Batch of Projects to represent 20+ -->
-                <div class="p-8 bg-black/5 dark:bg-white/5 rounded-3xl reveal flex flex-col justify-between h-full">
-                    <div><h3 class="text-xl font-bold mb-6">Sentiment Analytics SaaS</h3><p class="project-desc text-brand-gray mb-4">High-throughput sentiment analysis pipeline processing 10k messages per minute using BERT-based models and Kafka for streaming data.</p></div>
-                    <button class="read-more-btn text-[10px] font-bold uppercase tracking-widest text-brand-gray text-left mb-6">Read More</button>
-                    <div class="flex gap-2 mt-auto"><span class="text-[9px] px-2 py-1 bg-black/5 rounded font-bold uppercase">NLP</span></div>
-                </div>
-
-                <div class="p-8 bg-black/5 dark:bg-white/5 rounded-3xl reveal flex flex-col justify-between h-full">
-                    <div><h3 class="text-xl font-bold mb-6">Product Rec. Engine</h3><p class="project-desc text-brand-gray mb-4">Building a personalized recommendation system for a large e-commerce platform using Collaborative Filtering and Deep Neural Networks (DNNs).</p></div>
-                    <button class="read-more-btn text-[10px] font-bold uppercase tracking-widest text-brand-gray text-left mb-6">Read More</button>
-                    <div class="flex gap-2 mt-auto"><span class="text-[9px] px-2 py-1 bg-black/5 rounded font-bold uppercase">Data Science</span></div>
-                </div>
-
-                <div class="p-8 bg-black/5 dark:bg-white/5 rounded-3xl reveal flex flex-col justify-between h-full">
-                    <div><h3 class="text-xl font-bold mb-6">Auto-Annotation Tool</h3><p class="project-desc text-brand-gray mb-4">A custom tool that uses Segment Anything Model (SAM) to accelerate the labeling process for object detection datasets by 10x.</p></div>
-                    <button class="read-more-btn text-[10px] font-bold uppercase tracking-widest text-brand-gray text-left mb-6">Read More</button>
-                    <div class="flex gap-2 mt-auto"><span class="text-[9px] px-2 py-1 bg-black/5 rounded font-bold uppercase">Computer Vision</span></div>
-                </div>
-
-                <div class="p-8 bg-black/5 dark:bg-white/5 rounded-3xl reveal flex flex-col justify-between h-full">
-                    <div><h3 class="text-xl font-bold mb-6">AI Legal Drafter</h3><p class="project-desc text-brand-gray mb-4">GPT-4 powered legal assistant that drafts contracts and detects potential liabilities based on a custom knowledge base of 50k+ legal documents.</p></div>
-                    <button class="read-more-btn text-[10px] font-bold uppercase tracking-widest text-brand-gray text-left mb-6">Read More</button>
-                    <div class="flex gap-2 mt-auto"><span class="text-[9px] px-2 py-1 bg-black/5 rounded font-bold uppercase">LLM</span></div>
-                </div>
-
-                <div class="p-8 bg-black/5 dark:bg-white/5 rounded-3xl reveal flex flex-col justify-between h-full">
-                    <div><h3 class="text-xl font-bold mb-6">Whisper Transcriber</h3><p class="project-desc text-brand-gray mb-4">Locally hosted speech-to-text platform optimized for medical terminology, handling audio files with 98% accuracy in offline mode.</p></div>
-                    <button class="read-more-btn text-[10px] font-bold uppercase tracking-widest text-brand-gray text-left mb-6">Read More</button>
-                    <div class="flex gap-2 mt-auto"><span class="text-[9px] px-2 py-1 bg-black/5 rounded font-bold uppercase">Transcription</span></div>
-                </div>
-
-                <div class="p-8 bg-black/5 dark:bg-white/5 rounded-3xl reveal flex flex-col justify-between h-full">
-                    <div><h3 class="text-xl font-bold mb-6">Fraud Detection API</h3><p class="project-desc text-brand-gray mb-4">Real-time credit card fraud detection system using Isolation Forests and XGBoost, reducing false positives by 40%.</p></div>
-                    <button class="read-more-btn text-[10px] font-bold uppercase tracking-widest text-brand-gray text-left mb-6">Read More</button>
-                    <div class="flex gap-2 mt-auto"><span class="text-[9px] px-2 py-1 bg-black/5 rounded font-bold uppercase">Security</span></div>
-                </div>
-
-                <div class="p-8 bg-black/5 dark:bg-white/5 rounded-3xl reveal flex flex-col justify-between h-full">
-                    <div><h3 class="text-xl font-bold mb-6">Stock Forecasting AI</h3><p class="project-desc text-brand-gray mb-4">Predicting market volatility using LSTM networks and external news sentiment data. Built as a containerized microservice.</p></div>
-                    <button class="read-more-btn text-[10px] font-bold uppercase tracking-widest text-brand-gray text-left mb-6">Read More</button>
-                    <div class="flex gap-2 mt-auto"><span class="text-[9px] px-2 py-1 bg-black/5 rounded font-bold uppercase">Time Series</span></div>
-                </div>
-
-                <div class="p-8 bg-black/5 dark:bg-white/5 rounded-3xl reveal lg:col-span-1 flex flex-col justify-between h-full">
-                    <div><h3 class="text-xl font-bold mb-6">Visual QA system</h3><p class="project-desc text-brand-gray mb-4">VQA system that allows users to query architectural blueprints in natural language to find specific structural elements.</p></div>
-                    <button class="read-more-btn text-[10px] font-bold uppercase tracking-widest text-brand-gray text-left mb-6">Read More</button>
-                    <div class="flex gap-2 mt-auto"><span class="text-[9px] px-2 py-1 bg-black/5 rounded font-bold uppercase">Multi-modal</span></div>
-                </div>
-
-                <div class="text-center md:col-span-2 lg:col-span-3 py-10 reveal">
-                    <p class="text-brand-gray italic text-sm mb-6">And 10+ more specialized AI solutions in infrastructure, bioinformatics, and NLP...</p>
-                    <a href="https://github.com/flourish789" target="_blank" class="text-xs font-bold uppercase tracking-[0.4em] border-b border-black dark:border-white pb-2 hover:opacity-50 transition-opacity">Discover All Repo's</a>
-                </div>
+                </article>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-32 px-6 lg:px-12">
-        <div class="max-w-4xl mx-auto text-center border-t border-black/5 dark:border-white/5 pt-32">
-            <div class="reveal mb-16">
-                <h2 class="text-4xl md:text-6xl font-display font-black mb-8 italic">Let's Connect.</h2>
-                <div class="flex flex-col md:flex-row justify-center items-center gap-10">
-                    <a href="mailto:flourisholaiya@gmail.com" class="text-2xl font-bold hover:grayscale transition-all underline decoration-brand-gray decoration-1 underline-offset-8">flourisholaiya@gmail.com</a>
-                    <div class="hidden md:block w-px h-10 bg-brand-silver"></div>
-                    <div class="flex gap-6">
-                        <a href="https://linkedin.com/in/flourisholaiya" target="_blank" class="text-sm font-bold uppercase tracking-widest hover:opacity-50 transition-opacity">LinkedIn</a>
-                        <a href="https://github.com/flourish789" target="_blank" class="text-sm font-bold uppercase tracking-widest hover:opacity-50 transition-opacity">GitHub</a>
-                    </div>
-                </div>
+        <section id="contact" class="reveal">
+            <div class="section-head">
+                <h2>Contact</h2>
             </div>
-            
-            <form action="mailto:flourisholaiya@gmail.com" method="post" enctype="text/plain" class="reveal space-y-4 max-w-2xl mx-auto pt-16">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input type="text" name="name" placeholder="Name" class="w-full p-4 bg-black/5 dark:bg-white/5 rounded-2xl outline-none focus:ring-1 focus:ring-brand-gray transition-all text-sm" required>
-                    <input type="email" name="email" placeholder="Email" class="w-full p-4 bg-black/5 dark:bg-white/5 rounded-2xl outline-none focus:ring-1 focus:ring-brand-gray transition-all text-sm" required>
-                </div>
-                <textarea name="message" rows="5" placeholder="Your Message" class="w-full p-4 bg-black/5 dark:bg-white/5 rounded-2xl outline-none focus:ring-1 focus:ring-brand-gray transition-all text-sm" required></textarea>
-                <button type="submit" class="w-full py-5 bg-black dark:bg-white text-white dark:text-black font-black uppercase tracking-widest hover:scale-[1.02] transition-all rounded-2xl shadow-xl">Send Inquiry</button>
-            </form>
-        </div>
-    </section>
+            <p class="muted">Let us collaborate on data-rich products and AI-enabled systems.</p>
+            <div class="hero-cta">
+                <a class="btn" href="mailto:flourisholaiya@gmail.com">flourisholaiya@gmail.com</a>
+                <a class="btn" target="_blank" rel="noopener noreferrer" href="https://linkedin.com/in/flourisholaiya">LinkedIn</a>
+                <a class="btn" target="_blank" rel="noopener noreferrer" href="https://github.com/lourish789">GitHub</a>
+            </div>
+        </section>
 
-    <!-- Footer -->
-    <footer class="py-12 px-6 border-t border-black/5 dark:border-white/5">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="text-[10px] font-black uppercase tracking-[0.5em] text-brand-gray">
-                &copy; 2026 Flourish Olaiya &mdash; Built with Intent.
-            </div>
-            <div class="flex gap-8">
-                <a href="#about" class="text-[9px] font-bold uppercase tracking-widest text-brand-gray hover:text-black dark:hover:text-white transition-colors">Privacy</a>
-                <a href="#about" class="text-[9px] font-bold uppercase tracking-widest text-brand-gray hover:text-black dark:hover:text-white transition-colors">Terms</a>
-            </div>
-        </div>
-    </footer>
+        <footer class="footer">
+            <span>2026 Flourish Olaiya. Monochrome portfolio with confirmed repositories.</span>
+            <a href="#top">Back to top</a>
+        </footer>
+    </main>
 
-    <!-- Scripts -->
     <script>
-        // Theme Toggle
         const body = document.body;
-        const themeBtn = document.getElementById('theme-toggle');
-        const sunIcon = document.getElementById('sun-icon');
-        const moonIcon = document.getElementById('moon-icon');
+        const themeBtn = document.getElementById("theme-toggle");
+        const storedTheme = localStorage.getItem("theme");
 
-        themeBtn.addEventListener('click', () => {
-            body.classList.toggle('dark');
-            const isDark = body.classList.contains('dark');
-            sunIcon.classList.toggle('hidden', !isDark);
-            moonIcon.classList.toggle('hidden', isDark);
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-            initParticles();
+        if (storedTheme === "dark") {
+            body.classList.add("dark");
+        }
+
+        themeBtn.addEventListener("click", () => {
+            body.classList.toggle("dark");
+            localStorage.setItem("theme", body.classList.contains("dark") ? "dark" : "light");
+            initPixels();
         });
 
-        // Mobile Menu
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const closeMenuBtn = document.getElementById('close-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-nav-link');
-
-        mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.remove('translate-x-full'));
-        const closeM = () => mobileMenu.classList.add('translate-x-full');
-        closeMenuBtn.addEventListener('click', closeM);
-        mobileLinks.forEach(l => l.addEventListener('click', closeM));
-
-        // Sticky Nav Effect
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                nav.classList.add('py-4');
-                nav.classList.remove('py-6');
-            } else {
-                nav.classList.remove('py-4');
-                nav.classList.add('py-6');
-            }
-        });
-
-        // Read More Toggles
-        document.querySelectorAll('.read-more-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const desc = btn.parentElement.querySelector('.project-desc');
-                desc.classList.toggle('expanded');
-                btn.textContent = desc.classList.contains('expanded') ? 'Read Less' : 'Read More';
+        const reveals = document.querySelectorAll(".reveal");
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                }
             });
-        });
+        }, { threshold: 0.14 });
 
-        // Particle System
-        const canvas = document.getElementById('particles-canvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        
-        function initParticles() {
+        reveals.forEach((el) => observer.observe(el));
+
+        const canvas = document.getElementById("game-canvas");
+        const ctx = canvas.getContext("2d");
+        let nodes = [];
+
+        function initPixels() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-            particles = [];
-            const isDark = body.classList.contains('dark');
-            const color = isDark ? '255, 255, 255' : '0, 0, 0';
-            for(let i=0; i<50; i++) {
-                particles.push({
+            nodes = [];
+            const nodeCount = Math.max(20, Math.floor(window.innerWidth / 80));
+            for (let i = 0; i < nodeCount; i += 1) {
+                nodes.push({
                     x: Math.random() * canvas.width,
                     y: Math.random() * canvas.height,
-                    size: Math.random() * 1.5,
-                    vx: (Math.random() - 0.5) * 0.3,
-                    vy: (Math.random() - 0.5) * 0.3,
-                    alpha: Math.random() * 0.3,
-                    color: color
+                    dx: (Math.random() - 0.5) * 0.45,
+                    dy: (Math.random() - 0.5) * 0.45,
+                    s: Math.random() * 2 + 1
                 });
             }
         }
 
-        function animate() {
-            ctx.clearRect(0,0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.x += p.vx; p.y += p.vy;
-                if(p.x<0 || p.x>canvas.width) p.x=Math.random()*canvas.width;
-                if(p.y<0 || p.y>canvas.height) p.y=Math.random()*canvas.height;
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
-                ctx.fillStyle = `rgba(${p.color}, ${p.alpha})`;
-                ctx.fill();
-            });
-            requestAnimationFrame(animate);
-        }
-        window.addEventListener('resize', initParticles);
-        initParticles();
-        animate();
+        function drawFrame() {
+            const dark = body.classList.contains("dark");
+            const stroke = dark ? "rgba(255, 255, 255, 0.15)" : "rgba(0, 0, 0, 0.12)";
+            const fill = dark ? "rgba(255, 255, 255, 0.45)" : "rgba(0, 0, 0, 0.35)";
 
-        // Reveal observer
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
-        });
-        document.querySelectorAll('.reveal').forEach(r => observer.observe(r));
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < nodes.length; i += 1) {
+                const a = nodes[i];
+                a.x += a.dx;
+                a.y += a.dy;
+
+                if (a.x < 0 || a.x > canvas.width) a.dx *= -1;
+                if (a.y < 0 || a.y > canvas.height) a.dy *= -1;
+
+                ctx.fillStyle = fill;
+                ctx.fillRect(a.x, a.y, a.s, a.s);
+
+                for (let j = i + 1; j < nodes.length; j += 1) {
+                    const b = nodes[j];
+                    const dist = Math.hypot(a.x - b.x, a.y - b.y);
+                    if (dist < 110) {
+                        ctx.strokeStyle = stroke;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(a.x, a.y);
+                        ctx.lineTo(b.x, b.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            requestAnimationFrame(drawFrame);
+        }
+
+        window.addEventListener("resize", initPixels);
+        initPixels();
+        drawFrame();
     </script>
 </body>
 </html>
