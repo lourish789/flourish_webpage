@@ -127,9 +127,9 @@ nav{
 
 /* ── Stats bar ─────────────────────────────────────────── */
 .stats{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  display:grid;grid-template-columns:repeat(2,1fr);gap:1px;
   background:var(--line);border-radius:var(--radius);overflow:hidden;
-  margin-top:-2rem;position:relative;z-index:2;
+  margin-top:-2rem;position:relative;z-index:2;max-width:480px;margin-left:auto;margin-right:auto;
 }
 .stat{background:var(--card);padding:1.6rem 1.2rem;text-align:center}
 .stat strong{display:block;font-size:1.8rem;font-weight:800;letter-spacing:-.02em}
@@ -282,6 +282,7 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;margin-top:2rem}
         <p>I design and deploy production ML pipelines, RAG architectures, and computer vision solutions across healthcare, education, and agriculture.</p>
         <div class="hero-btns">
           <a class="btn-primary" href="#projects">View Projects</a>
+          <a class="btn-outline" href="FLOURISH_OLAIYA_CVV.pdf" target="_blank" rel="noopener noreferrer">View CV ↗</a>
           <a class="btn-outline" href="https://github.com/lourish789" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
         </div>
       </div>
@@ -295,8 +296,6 @@ footer{border-top:1px solid var(--line);padding:1.8rem 0;margin-top:2rem}
 <!-- ── Stats ─────────────────────────────────────────────── -->
 <div class="wrap reveal">
   <div class="stats">
-    <div class="stat"><strong>615+</strong><span>Contributions</span></div>
-    <div class="stat"><strong>29</strong><span>Repositories</span></div>
     <div class="stat"><strong>3+</strong><span>Years in AI/ML</span></div>
     <div class="stat"><strong>6</strong><span>Key Projects</span></div>
   </div>
